@@ -28,6 +28,7 @@ namespace cypos
         private frmInvoiceReceipts _frmInvoice;
         private string strInvoiceNo; 
         private int invoiceId;
+        private int? CustomerId;
         public bool IsDeliveryOrder;
         public bool IsInstallment;
         /****** To make the window movable *********/
@@ -63,7 +64,11 @@ namespace cypos
             set { invoiceId = value; }
             get { return InvoiceId; }
         }
-
+        public int? customerId
+        {
+            set { this.CustomerId= value; }
+            get { return this.CustomerId; }
+        }
         public string Payable
         {
             set { lblPayable.Text = value; }
@@ -189,6 +194,7 @@ namespace cypos
             InitializeComponent();
             _frmInvoice = _frm;
             IsInstallment = true;
+            _frmMain = new frmMain();
             formFunctionPointer += new functioncall(Replicate); // Coin and papernotes
             moneyPad1.CoinandNotesFunctionPointer = formFunctionPointer;
 
@@ -405,10 +411,9 @@ namespace cypos
         {
             if (txtPaidAmount.Text == string.Empty) 
                 txtPaidAmount.Text = "0";
-
-            if (decimal.Parse(this.lblPayable.Text) > decimal.Parse(this.txtPaidAmount.Text))
+            if (IsInstallment)
             {
-                if (_frmMain.lblCustomerId.Text == "" || _frmMain.lblCustomerId.Text == "0") 
+                if (this.CustomerId == null)
                 {
                     MessageBox.Show("Please Select Customer");
                     frmCustomerPopup customerPopup = new frmCustomerPopup(_frmMain);
@@ -418,7 +423,6 @@ namespace cypos
                 {
                     ValidateUserType validateFrm = new ValidateUserType();
                     validateFrm.ShowDialog();
-
                     if (validateFrm.userType == "Admin")
                     {
                         try
@@ -426,10 +430,6 @@ namespace cypos
                             lblChangeAmount.Text = lblChangeAmount.Text == "" ? "0" : lblChangeAmount.Text;
                             lblDueAmount.Text = txtPaidAmount.Text == "0" ? lblPayable.Text : lblDueAmount.Text;
                             int invoiceId = this.invoiceId;
-                            if (!IsInstallment)
-                            {
-                                 invoiceId = _frmMain.SaveInvoice(Convert.ToDecimal(lblPayable.Text), 0, Convert.ToDecimal(lblChangeAmount.Text), Convert.ToDecimal(lblDueAmount.Text) + Convert.ToDecimal(txtPaidAmount.Text), dtpDate.Text, dtpDate.Value.ToString("hh:mm tt"), lblPaymentType.Text, txtNote.Text, true, false, false);
-                            }
                             _frmMain.SaveInstallmentInvoice(invoiceId, Convert.ToDecimal(txtPaidAmount.Text));
                             this.Close();
                             _frmMain.Clear();
@@ -447,32 +447,70 @@ namespace cypos
             }
             else
             {
-                try
+                if (decimal.Parse(this.lblPayable.Text) > decimal.Parse(this.txtPaidAmount.Text))
                 {
-                    lblChangeAmount.Text = lblChangeAmount.Text == "" ? "0" : lblChangeAmount.Text;
-                    lblDueAmount.Text = txtPaidAmount.Text == "0" ? lblPayable.Text : lblDueAmount.Text;
-
-                    if (OrderTypes == 3)
+                    if ((_frmMain != null && (_frmMain.lblCustomerId.Text == "" || _frmMain.lblCustomerId.Text == "0"))) 
                     {
-                        foreach(var id in OrderIds)
-                        {
-                            _frmMain.SaveDeliveryOrders(id, lblPaymentType.Text, txtNote.Text);
-                        }
+                        MessageBox.Show("Please Select Customer");
+                        frmCustomerPopup customerPopup = new frmCustomerPopup(_frmMain);
+                        customerPopup.ShowDialog();
                     }
                     else
                     {
-                    _frmMain.SaveInvoice(Convert.ToDecimal(lblPayable.Text), Convert.ToDecimal(txtPaidAmount.Text)
-                        , Convert.ToDecimal(lblChangeAmount.Text), Convert.ToDecimal(lblDueAmount.Text), dtpDate.Text
-                        , dtpDate.Value.ToString("hh:mm tt"), lblPaymentType.Text, txtNote.Text);
+                        ValidateUserType validateFrm = new ValidateUserType();
+                        validateFrm.ShowDialog();
+
+                        if (validateFrm.userType == "Admin")
+                        {
+                            try
+                            {
+                                lblChangeAmount.Text = lblChangeAmount.Text == "" ? "0" : lblChangeAmount.Text;
+                                lblDueAmount.Text = txtPaidAmount.Text == "0" ? lblPayable.Text : lblDueAmount.Text;
+                                int invoiceId = this.invoiceId;
+                                invoiceId = _frmMain.SaveInvoice(Convert.ToDecimal(lblPayable.Text), 0, Convert.ToDecimal(lblChangeAmount.Text), Convert.ToDecimal(lblDueAmount.Text) + Convert.ToDecimal(txtPaidAmount.Text), dtpDate.Text, dtpDate.Value.ToString("hh:mm tt"), lblPaymentType.Text, txtNote.Text, true, false, false);
+                                _frmMain.SaveInstallmentInvoice(invoiceId, Convert.ToDecimal(txtPaidAmount.Text));
+                                this.Close();
+                                _frmMain.Clear();
+                            }
+                            catch (Exception exp)
+                            {
+                                Messages.ExceptionMessage(exp.Message);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Sorry , Not Authorized");
+                        }
                     }
-                    this.Close();
                 }
-                catch (Exception exp)
+                else
                 {
-                    Messages.ExceptionMessage(exp.Message);
+                    try
+                    {
+                        lblChangeAmount.Text = lblChangeAmount.Text == "" ? "0" : lblChangeAmount.Text;
+                        lblDueAmount.Text = txtPaidAmount.Text == "0" ? lblPayable.Text : lblDueAmount.Text;
+
+                        if (OrderTypes == 3)
+                        {
+                            foreach(var id in OrderIds)
+                            {
+                                _frmMain.SaveDeliveryOrders(id, lblPaymentType.Text, txtNote.Text);
+                            }
+                        }
+                        else
+                        {
+                        _frmMain.SaveInvoice(Convert.ToDecimal(lblPayable.Text), Convert.ToDecimal(txtPaidAmount.Text)
+                            , Convert.ToDecimal(lblChangeAmount.Text), Convert.ToDecimal(lblDueAmount.Text), dtpDate.Text
+                            , dtpDate.Value.ToString("hh:mm tt"), lblPaymentType.Text, txtNote.Text);
+                        }
+                        this.Close();
+                    }
+                    catch (Exception exp)
+                    {
+                        Messages.ExceptionMessage(exp.Message);
+                    }
                 }
             }
-
         }
 
         public void LoadPaymentTypes()

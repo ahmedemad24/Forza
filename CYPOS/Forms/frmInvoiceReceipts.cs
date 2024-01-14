@@ -460,9 +460,10 @@ ORDER BY log_date DESC";
             else
             {
                 frmPayment frmPayment = new frmPayment(this);
-                frmPayment.Payable = dgvInvoiceReceipts.CurrentRow.Cells["payment_amount"].Value.ToString();
+                frmPayment.Payable = dgvInvoiceReceipts.CurrentRow.Cells["due_amount"].Value.ToString();
                 frmPayment.InvoiceNo = dgvInvoiceReceipts.CurrentRow.Cells["invoice_no"].Value.ToString();
                 frmPayment.InvoiceId = int.Parse(dgvInvoiceReceipts.CurrentRow.Cells["id"].Value.ToString());
+                frmPayment.customerId = int.Parse(dgvInvoiceReceipts.CurrentRow.Cells["customer_id"].Value.ToString());
                 frmPayment.ShowDialog();
             }
         }
