@@ -47,6 +47,23 @@ namespace cypos.Forms
             OrderIds = any;
         }
 
+        public class ListItem
+        {
+            public int Value { get; set; }
+            public string Text { get; set; }
+
+            public ListItem(int value, string text)
+            {
+                Value = value;
+                Text = text;
+            }
+
+            public override string ToString()
+            {
+                return Text;
+            }
+        }
+
         private void frmSelectDeliveryMan_Load(object sender, EventArgs e)
         {
             string strSQL = "SELECT * FROM tbl_DeliveryMan WHERE IsDeleted = 0";
@@ -55,6 +72,16 @@ namespace cypos.Forms
             deliverymanDD.DataSource = dtDelivery;
             deliverymanDD.DisplayMember = "name";
             deliverymanDD.ValueMember = "id";
+            comboBoxEdit1.Properties.AppearanceDropDown.Font = new Font(comboBoxEdit1.Font.FontFamily, 12);
+            foreach (DataRow item in dtDelivery.Rows)
+            {
+                int id = Convert.ToInt32(item["id"]);
+                string name = item["name"].ToString();
+
+                comboBoxEdit1.Properties.Items.Add(new ListItem(id, name)); 
+            }
+
+            
         }
 
         private void setDeliveryBtn_Click(object sender, EventArgs e)
@@ -64,9 +91,14 @@ namespace cypos.Forms
                 var orderIds = OrderIds;
                 var stringOrderIds = string.Join(",", orderIds.ConvertAll<string>(delegate (int i) { return i.ToString(); }).ToArray());
                 var deliveryId = int.Parse(deliverymanDD.SelectedValue.ToString());
+                int selectedId = 0;
+                if (comboBoxEdit1.SelectedItem is ListItem selectedListItem)
+                {
+                    selectedId = selectedListItem.Value;
+                }
                 string now = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-
-                string strSQLInsert = $"UPDATE tbl_TempHeader SET deliveryman_id = {deliveryId} " +
+                    
+                string strSQLInsert = $"UPDATE tbl_TempHeader SET deliveryman_id = {selectedId} " +
                     $",delivery_date ='{now}' WHERE tbl_TempHeader.id  in ({stringOrderIds})";
                 DataAccess.ExecuteSQL(strSQLInsert);
 
