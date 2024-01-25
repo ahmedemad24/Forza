@@ -126,6 +126,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="DevExpress.DataAccess.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Images.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Office.v21.2.Core, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Pdf.v21.2.Core, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.PivotGrid.v21.2.Core, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -146,6 +147,8 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="DevExpress.XtraGauges.v21.2.Core, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraPrinting.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraReports.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v21.2.Extensions, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -231,6 +234,7 @@
     <Compile Include="Class\AppSetting.cs" />
     <Compile Include="Class\Common.cs" />
     <Compile Include="Class\ErrorLog.cs" />
+    <Compile Include="Class\ForControlsDX\CMBXEdit.cs" />
     <Compile Include="Class\MessageFilter.cs" />
     <Compile Include="Class\DirectPrint.cs" />
     <Compile Include="Class\SettingConfigurationDto.cs" />
@@ -625,6 +629,12 @@
     <Compile Include="Forms\ValidateUserType.designer.cs">
       <DependentUpon>ValidateUserType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\XtraForm1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\XtraForm1.Designer.cs">
+      <DependentUpon>XtraForm1.cs</DependentUpon>
+    </Compile>
     <Compile Include="obj\Debug\.NETFramework,Version=v4.6.AssemblyAttributes.cs" />
     <Compile Include="Other\frmSalesReturn.cs">
       <SubType>Form</SubType>
@@ -878,6 +888,15 @@
     <EmbeddedResource Include="Forms\summaryShift.resx" />
     <EmbeddedResource Include="Forms\ValidateUserType.resx">
       <DependentUpon>ValidateUserType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\XtraForm1.ar.resx">
+      <DependentUpon>XtraForm1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\XtraForm1.resx">
+      <DependentUpon>XtraForm1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\XtraForm1.sv.resx">
+      <DependentUpon>XtraForm1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="obj\Debug\cypos.CurPad.resources" />
     <EmbeddedResource Include="obj\Debug\cypos.CurrencyPad.resources" />

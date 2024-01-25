@@ -16,6 +16,7 @@ namespace cypos
         public static int RoleId { get; set; }
         public static string UserType { get; set; }
         public static string UserShiftCode { get; set; }
+        public static bool IsArabicLangSelected { get; set; }
 
         public static List<int> Privilege = new List<int>();
 
