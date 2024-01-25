@@ -1,4 +1,5 @@
-﻿using cypos.Reports;
+﻿using cypos.Class.ForControlsDX;
+using cypos.Reports;
 using DevExpress.XtraPrinting;
 using DevExpress.XtraReports.UI;
 using System;
@@ -47,41 +48,27 @@ namespace cypos.Forms
             OrderIds = any;
         }
 
-        public class ListItem
-        {
-            public int Value { get; set; }
-            public string Text { get; set; }
-
-            public ListItem(int value, string text)
-            {
-                Value = value;
-                Text = text;
-            }
-
-            public override string ToString()
-            {
-                return Text;
-            }
-        }
-
         private void frmSelectDeliveryMan_Load(object sender, EventArgs e)
         {
             string strSQL = "SELECT * FROM tbl_DeliveryMan WHERE IsDeleted = 0";
             DataAccess.ExecuteSQL(strSQL);
             DataTable dtDelivery = DataAccess.GetDataTable(strSQL);
-            deliverymanDD.DataSource = dtDelivery;
-            deliverymanDD.DisplayMember = "name";
-            deliverymanDD.ValueMember = "id";
+
+            var deliveryMenList = dtDelivery
+            .AsEnumerable();
+
             comboBoxEdit1.Properties.AppearanceDropDown.Font = new Font(comboBoxEdit1.Font.FontFamily, 12);
-            foreach (DataRow item in dtDelivery.Rows)
+            foreach (DataRow item in deliveryMenList)
             {
                 int id = Convert.ToInt32(item["id"]);
                 string name = item["name"].ToString();
 
-                comboBoxEdit1.Properties.Items.Add(new ListItem(id, name)); 
+                comboBoxEdit1.Properties.Items.Add(new CMBXEdit(id, name));
             }
 
-            
+            //deliverymanDD.DataSource = dtDelivery;
+            //deliverymanDD.DisplayMember = "name";
+            //deliverymanDD.ValueMember = "id";
         }
 
         private void setDeliveryBtn_Click(object sender, EventArgs e)
@@ -90,9 +77,9 @@ namespace cypos.Forms
             {
                 var orderIds = OrderIds;
                 var stringOrderIds = string.Join(",", orderIds.ConvertAll<string>(delegate (int i) { return i.ToString(); }).ToArray());
-                var deliveryId = int.Parse(deliverymanDD.SelectedValue.ToString());
+                //var deliveryId = int.Parse(deliverymanDD.SelectedValue.ToString());
                 int selectedId = 0;
-                if (comboBoxEdit1.SelectedItem is ListItem selectedListItem)
+                if (comboBoxEdit1.SelectedItem is CMBXEdit selectedListItem)
                 {
                     selectedId = selectedListItem.Value;
                 }
@@ -128,6 +115,12 @@ namespace cypos.Forms
         private void pbxClose_MouseHover(object sender, EventArgs e)
         {
             toolTip2.Show("Close", pbxClose);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            XtraForm1 x = new XtraForm1();
+            x.ShowDialog();
         }
     }
 }
