@@ -245,20 +245,28 @@ namespace cypos.Forms
 
         private void button3_Click(object sender, EventArgs e)
         {
-            //Edit Dilevery
-            var id = int.Parse(deliveryIdLbl.Text);
-            if (DeliveryNameTxt.Text != "" && DeliveryPhnTxt.Text != "")
+            try
             {
-                string strSQLUpdate = $"UPDATE tbl_DeliveryMan " +
-                    $"SET name = '{DeliveryNameTxt.Text}', phone_num = '{DeliveryPhnTxt.Text}' " +
-                    $"WHERE id = {id}";
-                DataAccess.ExecuteSQL(strSQLUpdate);
-                DeliveryGridFill();
+                //Edit Dilevery
+                var id = int.Parse(deliveryIdLbl.Text);
+                if (DeliveryNameTxt.Text != "" && DeliveryPhnTxt.Text != "")
+                {
+                    string strSQLUpdate = $"UPDATE tbl_DeliveryMan " +
+                        $"SET name = '{DeliveryNameTxt.Text}', phone_num = '{DeliveryPhnTxt.Text}' " +
+                        $"WHERE id = {id}";
+                    DataAccess.ExecuteSQL(strSQLUpdate);
+                    DeliveryGridFill();
+                }
+                else
+                {
+                    MessageBox.Show("Something went wrong!");
+                }
             }
-            else
+            catch
             {
-                MessageBox.Show("Something went wrong!");
+                MessageBox.Show("Something went wrong!","Warning!");
             }
+
         }
 
         private void dgvDeliveryMen_CellClick(object sender, DataGridViewCellEventArgs e)

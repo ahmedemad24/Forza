@@ -77,6 +77,10 @@
           <DataField>qty</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+		  <Field Name="comment">
+			  <DataField>comment</DataField>
+			  <rd:TypeName>System.String</rd:TypeName>
+		  </Field>
         <Field Name="show_kitchen">
           <DataField>show_kitchen</DataField>
           <rd:TypeName>System.Boolean</rd:TypeName>
@@ -110,11 +114,14 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.28857in</Width>
+              <Width>1.28857in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>0.45809in</Width>
             </TablixColumn>
+			  <TablixColumn>
+				  <Width>0.65809in</Width>
+			  </TablixColumn>
           </TablixColumns>
           <TablixRows>
             <TablixRow>
@@ -194,6 +201,44 @@
                     </Textbox>
                   </CellContents>
                 </TablixCell>
+				<TablixCell>
+					<CellContents>
+					<Textbox Name="Textbox77">
+							<CanGrow>true</CanGrow>
+							<KeepTogether>true</KeepTogether>
+							<Paragraphs>
+								<Paragraph>
+									<TextRuns>
+										<TextRun>
+											<Value>Comment</Value>
+											<Style>
+												<FontFamily>Tahoma</FontFamily>
+												<FontSize>7pt</FontSize>
+												<FontWeight>Bold</FontWeight>
+											</Style>
+										</TextRun>
+									</TextRuns>
+									<Style>
+										<TextAlign>Center</TextAlign>
+									</Style>
+								</Paragraph>
+							</Paragraphs>
+							<rd:DefaultName>Textbox77</rd:DefaultName>
+							<Style>
+								<Border>
+									<Style>None</Style>
+								</Border>
+								<BottomBorder>
+									<Style>Solid</Style>
+								</BottomBorder>
+								<PaddingLeft>2pt</PaddingLeft>
+								<PaddingRight>2pt</PaddingRight>
+								<PaddingTop>2pt</PaddingTop>
+								<PaddingBottom>2pt</PaddingBottom>
+							</Style>
+						</Textbox>
+					</CellContents>
+				</TablixCell>
               </TablixCells>
             </TablixRow>
             <TablixRow>
@@ -265,6 +310,40 @@
                     </Textbox>
                   </CellContents>
                 </TablixCell>
+				<TablixCell>
+					  <CellContents>
+						  <Textbox Name="comment">
+							  <CanGrow>true</CanGrow>
+							  <CanShrink>true</CanShrink>
+							  <KeepTogether>true</KeepTogether>
+							  <Paragraphs>
+								  <Paragraph>
+									  <TextRuns>
+										  <TextRun>
+											  <Value>=Fields!comment.Value</Value>
+											  <Style>
+												  <FontFamily>Tahoma</FontFamily>
+												  <FontSize>7pt</FontSize>
+											  </Style>
+										  </TextRun>
+									  </TextRuns>
+									  <Style>
+										  <TextAlign>Center</TextAlign>
+									  </Style>
+								  </Paragraph>
+							  </Paragraphs>
+							  <rd:DefaultName>comment</rd:DefaultName>
+							  <Style>
+								  <Border>
+									  <Style>None</Style>
+								  </Border>
+								  <PaddingLeft>2pt</PaddingLeft>
+								  <PaddingRight>2pt</PaddingRight>
+								  <PaddingTop>2pt</PaddingTop>
+							  </Style>
+						  </Textbox>
+					  </CellContents>
+				  </TablixCell>
               </TablixCells>
             </TablixRow>
           </TablixRows>
@@ -273,7 +352,8 @@
           <TablixMembers>
             <TablixMember />
             <TablixMember />
-          </TablixMembers>
+			<TablixMember />
+		  </TablixMembers>
         </TablixColumnHierarchy>
         <TablixRowHierarchy>
           <TablixMembers>

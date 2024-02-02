@@ -121,9 +121,13 @@
     <value>17, 17</value>
   </metadata>
   <data name="customSqlQuery1.Sql" xml:space="preserve">
-    <value>SELECT h.id headerId, isnull(h.invoiceNo,'Opened INV') invoiceNo
-	, h.invoice_date,h.invoice_time,
-	CASE
+    <value>SELECT h.id headerId, isnull(h.invoiceNo,'Opened INV') invoiceNo,usr.name waiter
+	, h.invoice_date,h.invoice_time,no_of_guests
+	,(select table_name from tbl_Tables where id=table_id) TableName
+	,(select location_name from tbl_TableLocation where id=(select location_id from tbl_Tables where id=table_id)) Location,iif(sc_rate=0,'','Service Charge ('+cast(sc_rate as varchar(5))+'%)') sc_rate,sc_charge
+	,(select top 1 '\Images\'+logo from tbl_Company) Logo
+	,(select top 1 company_name+' - '+company_address +' - '+company_phone from tbl_Company) footer
+	,CASE
 	WHEN h.order_type = 1 THEN 'DINE IN'
 	WHEN h.order_type = 2 THEN 'TAKE AWAY'
 	WHEN h.order_type = 3 THEN 'DELIVERY'
@@ -136,9 +140,10 @@ FROM tbl_TempHeader h
 left join tbl_TempDetail d on h.id=d.header_id
 left join tbl_Customer c on h.customer_id = c.id
 left join tbl_region r on c.RegionId = r.RegionId
+left join tbl_User usr on  usr.id=waiter_id
 WHERE h.id in (select * from dbo.SplitStrings(@ids,','))</value>
   </data>
   <data name="sqlDataSource1.ResultSchemaSerializable" xml:space="preserve">
-    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9IlF1ZXJ5Ij48RmllbGQgTmFtZT0iaGVhZGVySWQiIFR5cGU9IkludDY0IiAvPjxGaWVsZCBOYW1lPSJpbnZvaWNlTm8iIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iaW52b2ljZV9kYXRlIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9Imludm9pY2VfdGltZSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJvcmRlcl90eXBlIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9InVzZXJfbmFtZSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJpZCIgVHlwZT0iSW50NjQiIC8+PEZpZWxkIE5hbWU9Im5hbWUiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iYWRkcmVzcyIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJjaXR5IiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9InBob25lIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9ImVtYWlsIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IlJlZ2lvbklkIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iSXNEZWxldGVkIiBUeXBlPSJCb29sZWFuIiAvPjxGaWVsZCBOYW1lPSJpdGVtX25hbWUiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0icXR5IiBUeXBlPSJEZWNpbWFsIiAvPjxGaWVsZCBOYW1lPSJzZWxsaW5nX3ByaWNlIiBUeXBlPSJEZWNpbWFsIiAvPjxGaWVsZCBOYW1lPSJ0b3RhbCIgVHlwZT0iRGVjaW1hbCIgLz48RmllbGQgTmFtZT0iZGlzY291bnRfYW1vdW50IiBUeXBlPSJEZWNpbWFsIiAvPjxGaWVsZCBOYW1lPSJEZWxpdmVyeUZlZXMiIFR5cGU9IkRlY2ltYWwiIC8+PEZpZWxkIE5hbWU9IlJlZ2lvbk5hbWUiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0idGF4MV9hbW91bnQiIFR5cGU9IkRlY2ltYWwiIC8+PEZpZWxkIE5hbWU9InRheDJfYW1vdW50IiBUeXBlPSJEZWNpbWFsIiAvPjwvVmlldz48L0RhdGFTZXQ+</value>
+    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9IlF1ZXJ5Ij48RmllbGQgTmFtZT0iaGVhZGVySWQiIFR5cGU9IkludDY0IiAvPjxGaWVsZCBOYW1lPSJpbnZvaWNlTm8iIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iaW52b2ljZV9kYXRlIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9Imludm9pY2VfdGltZSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJUYWJsZU5hbWUiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iTG9nbyIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJmb290ZXIiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0ib3JkZXJfdHlwZSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJ1c2VyX25hbWUiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iaWQiIFR5cGU9IkludDY0IiAvPjxGaWVsZCBOYW1lPSJuYW1lIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9ImFkZHJlc3MiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iY2l0eSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJwaG9uZSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJlbWFpbCIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJSZWdpb25JZCIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9IklzRGVsZXRlZCIgVHlwZT0iQm9vbGVhbiIgLz48RmllbGQgTmFtZT0iaXRlbV9uYW1lIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9InF0eSIgVHlwZT0iRGVjaW1hbCIgLz48RmllbGQgTmFtZT0ic2VsbGluZ19wcmljZSIgVHlwZT0iRGVjaW1hbCIgLz48RmllbGQgTmFtZT0idG90YWwiIFR5cGU9IkRlY2ltYWwiIC8+PEZpZWxkIE5hbWU9ImRpc2NvdW50X2Ftb3VudCIgVHlwZT0iRGVjaW1hbCIgLz48RmllbGQgTmFtZT0iRGVsaXZlcnlGZWVzIiBUeXBlPSJEZWNpbWFsIiAvPjxGaWVsZCBOYW1lPSJSZWdpb25OYW1lIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9InRheDFfYW1vdW50IiBUeXBlPSJEZWNpbWFsIiAvPjxGaWVsZCBOYW1lPSJ0YXgyX2Ftb3VudCIgVHlwZT0iRGVjaW1hbCIgLz48L1ZpZXc+PC9EYXRhU2V0Pg==</value>
   </data>
 </root>

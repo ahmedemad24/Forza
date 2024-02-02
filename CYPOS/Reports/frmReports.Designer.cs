@@ -47,6 +47,8 @@
             this.btnPdf = new System.Windows.Forms.Button();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.pnlCombo = new System.Windows.Forms.Panel();
+            this.lblShiftId = new System.Windows.Forms.Label();
+            this.cmbShiftId = new System.Windows.Forms.ComboBox();
             this.lblSearchField = new System.Windows.Forms.Label();
             this.cmbSearch = new System.Windows.Forms.ComboBox();
             this.pnlDate = new System.Windows.Forms.Panel();
@@ -80,7 +82,7 @@
             this.pnlTitle.Location = new System.Drawing.Point(0, 0);
             this.pnlTitle.Name = "pnlTitle";
             this.pnlTitle.Padding = new System.Windows.Forms.Padding(1, 3, 3, 3);
-            this.pnlTitle.Size = new System.Drawing.Size(800, 38);
+            this.pnlTitle.Size = new System.Drawing.Size(935, 38);
             this.pnlTitle.TabIndex = 164;
             this.pnlTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlTitle_MouseDown);
             // 
@@ -90,7 +92,7 @@
             this.pbxClose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbxClose.Dock = System.Windows.Forms.DockStyle.Right;
             this.pbxClose.Image = global::cypos.Properties.Resources.close32x32;
-            this.pbxClose.Location = new System.Drawing.Point(765, 3);
+            this.pbxClose.Location = new System.Drawing.Point(900, 3);
             this.pbxClose.Name = "pbxClose";
             this.pbxClose.Size = new System.Drawing.Size(32, 32);
             this.pbxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -119,7 +121,7 @@
             this.pnlMain.Location = new System.Drawing.Point(0, 38);
             this.pnlMain.Name = "pnlMain";
             this.pnlMain.Padding = new System.Windows.Forms.Padding(5, 0, 5, 5);
-            this.pnlMain.Size = new System.Drawing.Size(800, 562);
+            this.pnlMain.Size = new System.Drawing.Size(935, 562);
             this.pnlMain.TabIndex = 165;
             // 
             // pnlInner
@@ -131,7 +133,7 @@
             this.pnlInner.Location = new System.Drawing.Point(5, 0);
             this.pnlInner.Name = "pnlInner";
             this.pnlInner.Padding = new System.Windows.Forms.Padding(5);
-            this.pnlInner.Size = new System.Drawing.Size(790, 557);
+            this.pnlInner.Size = new System.Drawing.Size(925, 557);
             this.pnlInner.TabIndex = 0;
             // 
             // panel2
@@ -142,7 +144,7 @@
             this.panel2.Location = new System.Drawing.Point(285, 5);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.panel2.Size = new System.Drawing.Size(500, 547);
+            this.panel2.Size = new System.Drawing.Size(635, 547);
             this.panel2.TabIndex = 233;
             // 
             // panel3
@@ -153,7 +155,7 @@
             this.panel3.Location = new System.Drawing.Point(5, 55);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.panel3.Size = new System.Drawing.Size(490, 492);
+            this.panel3.Size = new System.Drawing.Size(625, 492);
             this.panel3.TabIndex = 233;
             // 
             // rptViewer
@@ -180,7 +182,7 @@
             this.rptViewer.ShowStopButton = false;
             this.rptViewer.ShowToolBar = false;
             this.rptViewer.ShowZoomControl = false;
-            this.rptViewer.Size = new System.Drawing.Size(490, 434);
+            this.rptViewer.Size = new System.Drawing.Size(625, 434);
             this.rptViewer.TabIndex = 232;
             // 
             // panel1
@@ -192,16 +194,16 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 439);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(490, 53);
+            this.panel1.Size = new System.Drawing.Size(625, 53);
             this.panel1.TabIndex = 231;
             // 
             // btnExit
             // 
             this.btnExit.BackgroundImage = global::cypos.Properties.Resources.exit100x45;
             this.btnExit.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.Location = new System.Drawing.Point(370, 4);
+            this.btnExit.Location = new System.Drawing.Point(505, 4);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(117, 45);
+            this.btnExit.Size = new System.Drawing.Size(115, 45);
             this.btnExit.TabIndex = 200;
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
@@ -209,9 +211,9 @@
             // btnPrint
             // 
             this.btnPrint.BackgroundImage = global::cypos.Properties.Resources.print100x40;
-            this.btnPrint.Location = new System.Drawing.Point(265, 4);
+            this.btnPrint.Location = new System.Drawing.Point(384, 4);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(100, 45);
+            this.btnPrint.Size = new System.Drawing.Size(115, 45);
             this.btnPrint.TabIndex = 229;
             this.btnPrint.UseVisualStyleBackColor = true;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
@@ -220,7 +222,7 @@
             // 
             this.btnExcel.BackgroundImage = global::cypos.Properties.Resources.export_excel;
             this.btnExcel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnExcel.Location = new System.Drawing.Point(61, 4);
+            this.btnExcel.Location = new System.Drawing.Point(57, 4);
             this.btnExcel.Name = "btnExcel";
             this.btnExcel.Size = new System.Drawing.Size(45, 45);
             this.btnExcel.TabIndex = 3;
@@ -249,18 +251,43 @@
             this.pnlHeader.Location = new System.Drawing.Point(5, 0);
             this.pnlHeader.Name = "pnlHeader";
             this.pnlHeader.Padding = new System.Windows.Forms.Padding(1);
-            this.pnlHeader.Size = new System.Drawing.Size(490, 55);
+            this.pnlHeader.Size = new System.Drawing.Size(625, 55);
             this.pnlHeader.TabIndex = 230;
             // 
             // pnlCombo
             // 
+            this.pnlCombo.Controls.Add(this.lblShiftId);
+            this.pnlCombo.Controls.Add(this.cmbShiftId);
             this.pnlCombo.Controls.Add(this.lblSearchField);
             this.pnlCombo.Controls.Add(this.cmbSearch);
             this.pnlCombo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlCombo.Location = new System.Drawing.Point(266, 1);
             this.pnlCombo.Name = "pnlCombo";
-            this.pnlCombo.Size = new System.Drawing.Size(221, 51);
+            this.pnlCombo.Size = new System.Drawing.Size(356, 51);
             this.pnlCombo.TabIndex = 1;
+            // 
+            // lblShiftId
+            // 
+            this.lblShiftId.AutoSize = true;
+            this.lblShiftId.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblShiftId.Location = new System.Drawing.Point(181, 4);
+            this.lblShiftId.Name = "lblShiftId";
+            this.lblShiftId.Size = new System.Drawing.Size(47, 14);
+            this.lblShiftId.TabIndex = 228;
+            this.lblShiftId.Text = "Shift Id";
+            this.lblShiftId.Visible = false;
+            // 
+            // cmbShiftId
+            // 
+            this.cmbShiftId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbShiftId.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbShiftId.FormattingEnabled = true;
+            this.cmbShiftId.Location = new System.Drawing.Point(181, 21);
+            this.cmbShiftId.Name = "cmbShiftId";
+            this.cmbShiftId.Size = new System.Drawing.Size(170, 24);
+            this.cmbShiftId.TabIndex = 227;
+            this.cmbShiftId.Visible = false;
+            this.cmbShiftId.SelectedIndexChanged += new System.EventHandler(this.cmbShiftId_SelectedIndexChanged);
             // 
             // lblSearchField
             // 
@@ -277,9 +304,9 @@
             this.cmbSearch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSearch.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbSearch.FormattingEnabled = true;
-            this.cmbSearch.Location = new System.Drawing.Point(3, 21);
+            this.cmbSearch.Location = new System.Drawing.Point(6, 20);
             this.cmbSearch.Name = "cmbSearch";
-            this.cmbSearch.Size = new System.Drawing.Size(209, 24);
+            this.cmbSearch.Size = new System.Drawing.Size(170, 24);
             this.cmbSearch.TabIndex = 224;
             this.cmbSearch.SelectedIndexChanged += new System.EventHandler(this.cmbSearch_SelectedIndexChanged);
             // 
@@ -394,7 +421,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(800, 600);
+            this.ClientSize = new System.Drawing.Size(935, 600);
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.pnlTitle);
             this.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -450,5 +477,7 @@
         private System.Windows.Forms.Panel pnlDate;
         private System.Windows.Forms.Panel pnlCombo;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Label lblShiftId;
+        private System.Windows.Forms.ComboBox cmbShiftId;
     }
 }

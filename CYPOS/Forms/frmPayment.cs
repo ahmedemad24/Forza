@@ -421,9 +421,9 @@ namespace cypos
                 }
                 else
                 {
-                    ValidateUserType validateFrm = new ValidateUserType();
-                    validateFrm.ShowDialog();
-                    if (validateFrm.userType == "Admin")
+                    //ValidateUserType validateFrm = new ValidateUserType();
+                    //validateFrm.ShowDialog();
+                    if (UserInfo.UserType == "Admin")
                     {
                         try
                         {
@@ -457,10 +457,10 @@ namespace cypos
                     }
                     else
                     {
-                        ValidateUserType validateFrm = new ValidateUserType();
-                        validateFrm.ShowDialog();
+                        //ValidateUserType validateFrm = new ValidateUserType();
+                        //validateFrm.ShowDialog();
 
-                        if (validateFrm.userType == "Admin")
+                        if (UserInfo.UserType == "Admin")
                         {
                             try
                             {
@@ -712,97 +712,138 @@ namespace cypos
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
+            bool IsSuccess = false;
+            int invoiceId=0;
             if (txtPaidAmount.Text == string.Empty) txtPaidAmount.Text = "0";
             if (Convert.ToDecimal(txtPaidAmount.Text) > 0)
             {
-                if (Settings.PreviewBeforePrint)
+                if (IsDeliveryOrder)
                 {
-                    if (IsDeliveryOrder)
+                    foreach (var id in OrderIds)
                     {
-                        foreach (var id in OrderIds)
-                        {
-                            _frmMain.SaveDeliveryOrders(id, lblPaymentType.Text, txtNote.Text);
-                        }
+                        _frmMain.SaveDeliveryOrders(id, lblPaymentType.Text, txtNote.Text);
                     }
-                    else
-                    {
-                        _frmMain.SaveInvoice(Convert.ToDecimal(lblPayable.Text), Convert.ToDecimal(txtPaidAmount.Text), Convert.ToDecimal(lblChangeAmount.Text), Convert.ToDecimal(lblDueAmount.Text), dtpDate.Text, dtpDate.Value.ToString("hh:mm tt"), lblPaymentType.Text, txtNote.Text);
-                    }
-                    rprtReceiptFromMain rprtForInvoice = new rprtReceiptFromMain(_frmMain.headerId);
-                    ReportPrintTool printTool2 = new ReportPrintTool(rprtForInvoice);
-                    printTool2.ShowPreview();
                 }
                 else
                 {
-                    if (IsDeliveryOrder)
+                    if (IsInstallment)
                     {
-                        foreach (var id in OrderIds)
+                        if (this.CustomerId == null)
                         {
-                            _frmMain.SaveDeliveryOrders(id, lblPaymentType.Text, txtNote.Text, false);
+                            MessageBox.Show("Please Select Customer");
+                            frmCustomerPopup customerPopup = new frmCustomerPopup(_frmMain);
+                            customerPopup.ShowDialog();
+                        }
+                        else
+                        {
+                            //ValidateUserType validateFrm = new ValidateUserType();
+                            //validateFrm.ShowDialog();
+                            if (UserInfo.UserType == "Admin")
+                            {
+                                try
+                                {
+                                    lblChangeAmount.Text = lblChangeAmount.Text == "" ? "0" : lblChangeAmount.Text;
+                                    lblDueAmount.Text = txtPaidAmount.Text == "0" ? lblPayable.Text : lblDueAmount.Text;
+                                    invoiceId = this.invoiceId;
+                                    _frmMain.SaveInstallmentInvoice(invoiceId, Convert.ToDecimal(txtPaidAmount.Text));
+                                    IsSuccess = true;
+                                }
+                                catch (Exception exp)
+                                {
+                                    Messages.ExceptionMessage(exp.Message);
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Sorry , Not Authorized");
+                            }
                         }
                     }
                     else
                     {
+                        if (decimal.Parse(this.lblPayable.Text) > decimal.Parse(this.txtPaidAmount.Text))
+                        {
+                            if ((_frmMain != null && (_frmMain.lblCustomerId.Text == "" || _frmMain.lblCustomerId.Text == "0")))
+                            {
+                                MessageBox.Show("Please Select Customer");
+                                frmCustomerPopup customerPopup = new frmCustomerPopup(_frmMain);
+                                customerPopup.ShowDialog();
+                            }
+                            else
+                            {
+                                //ValidateUserType validateFrm = new ValidateUserType();
+                                //validateFrm.ShowDialog();
 
-                        _frmMain.SaveInvoice(Convert.ToDecimal(lblPayable.Text), Convert.ToDecimal(txtPaidAmount.Text), Convert.ToDecimal(lblChangeAmount.Text), Convert.ToDecimal(lblDueAmount.Text), dtpDate.Text, dtpDate.Value.ToString("hh:mm tt"), lblPaymentType.Text, txtNote.Text, false);
+                                if (UserInfo.UserType == "Admin")
+                                {
+                                    try
+                                    {
+                                        lblChangeAmount.Text = lblChangeAmount.Text == "" ? "0" : lblChangeAmount.Text;
+                                        lblDueAmount.Text = txtPaidAmount.Text == "0" ? lblPayable.Text : lblDueAmount.Text;
+                                        invoiceId = this.invoiceId;
+                                        invoiceId = _frmMain.SaveInvoice(Convert.ToDecimal(lblPayable.Text), 0, Convert.ToDecimal(lblChangeAmount.Text), Convert.ToDecimal(lblDueAmount.Text) + Convert.ToDecimal(txtPaidAmount.Text), dtpDate.Text, dtpDate.Value.ToString("hh:mm tt"), lblPaymentType.Text, txtNote.Text, true, false, false);
+                                        _frmMain.SaveInstallmentInvoice(invoiceId, Convert.ToDecimal(txtPaidAmount.Text));
+                                        IsSuccess = true;
+                                    }
+                                    catch (Exception exp)
+                                    {
+                                        Messages.ExceptionMessage(exp.Message);
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Sorry , Not Authorized");
+                                }
+                            }
+                        }
+                        else
+                        {
+                            try
+                            {
+                                lblChangeAmount.Text = lblChangeAmount.Text == "" ? "0" : lblChangeAmount.Text;
+                                lblDueAmount.Text = txtPaidAmount.Text == "0" ? lblPayable.Text : lblDueAmount.Text;
+
+                                if (OrderTypes == 3)
+                                {
+                                    foreach (var id in OrderIds)
+                                    {
+                                        _frmMain.SaveDeliveryOrders(id, lblPaymentType.Text, txtNote.Text);
+                                    }
+                                }
+                                else
+                                {
+                                    invoiceId= _frmMain.SaveInvoice(Convert.ToDecimal(lblPayable.Text), Convert.ToDecimal(txtPaidAmount.Text)
+                                        , Convert.ToDecimal(lblChangeAmount.Text), Convert.ToDecimal(lblDueAmount.Text), dtpDate.Text
+                                        , dtpDate.Value.ToString("hh:mm tt"), lblPaymentType.Text, txtNote.Text);
+                                }
+                                IsSuccess = true;
+                            }
+                            catch (Exception exp)
+                            {
+                                Messages.ExceptionMessage(exp.Message);
+                            }
+                        }
                     }
+                }
+                if (OrderTypes == 3)
+                    this.Close();
 
-                    rprtReceiptFromMain rprtForInvoice = new rprtReceiptFromMain(_frmMain.headerId);
-                    ReportPrintTool printTool2 = new ReportPrintTool(rprtForInvoice);
-                    printTool2.Print();
-                    //LocalReport report = new LocalReport();
-                    //report.ReportEmbeddedResource = "cypos.Reports.rptReceipt.rdlc";
-
-                    //report.EnableExternalImages = true;
-                    //report.DisplayName = "Receipt-" + strInvoiceNo;
-                    //ReportParameter paramLogo = new ReportParameter();
-                    //paramLogo.Name = "logo_path";
-                    //paramLogo.Values.Add("file:///" + Application.StartupPath + @"\Images\" + Company.Logo);
-                    //report.SetParameters(paramLogo);
-
-
-                    //string strSQL = "SELECT tbl_InvoiceHeader.invoice_id,tbl_InvoiceHeader.order_type, tbl_InvoiceHeader.invoice_no, tbl_InvoiceHeader.invoice_date," +
-                    //   "tbl_InvoiceHeader.invoice_time, tbl_InvoiceHeader.table_id,tbl_Tables.table_name," +
-                    //   "tbl_TableLocation.location_name, tbl_InvoiceHeader.no_of_guests, tbl_InvoiceHeader.waiter_id," +
-                    //   "tbl_User.name AS waiter_name,tbl_InvoiceHeader.customer_id," +
-                    //   "CASE WHEN tbl_InvoiceHeader.customer_id = 0 THEN 'Cash' ELSE tbl_Customer.name END AS customer_name," +
-                    //   "tbl_Customer.address AS customer_address, tbl_Customer.city AS customer_city," +
-                    //   "tbl_Customer.phone AS customer_phone, tbl_Customer.email AS customer_email," +
-                    //   "tbl_InvoiceHeader.payment_type, tbl_InvoiceHeader.payment_amount,tbl_InvoiceHeader.paid_amount, tbl_InvoiceHeader.change_amount," +
-                    //   "tbl_InvoiceHeader.due_amount,tbl_InvoiceHeader.discount_rate, tbl_InvoiceHeader.discount_amount," +
-                    //   "tbl_InvoiceHeader.tax1_name, tbl_InvoiceHeader.tax1_rate, tbl_InvoiceHeader.tax1_amount," +
-                    //   "tbl_InvoiceHeader.tax2_name, tbl_InvoiceHeader.tax2_rate, tbl_InvoiceHeader.tax2_amount," +
-                    //   "tbl_InvoiceHeader.sc_rate,tbl_InvoiceHeader.sc_charge,tbl_InvoiceHeader.note, tbl_InvoiceHeader.user_name," +
-                    //   "tbl_InvoiceHeader.log_date,tbl_InvoiceDetail.detail_id, tbl_InvoiceDetail.item_code, tbl_InvoiceDetail.item_name," +
-                    //   "tbl_InvoiceDetail.qty,tbl_InvoiceDetail.selling_price, tbl_InvoiceDetail.total," +
-                    //   "tbl_InvoiceDetail.discount, tbl_InvoiceDetail.tax_apply, tbl_InvoiceDetail.show_kitchen," +
-                    //   "tbl_Company.company_name, tbl_Company.company_address, tbl_Company.company_phone," +
-                    //   "tbl_Company.email AS company_email, tbl_Company.web AS company_web, tbl_Company.tax_no," +
-                    //   "tbl_Company.footer_message, tbl_Company.logo,tbl_Settings.ask_table, tbl_Settings.ask_guest_count," +
-                    //   "tbl_Settings.ask_waiter, tbl_Settings.show_logo, tbl_Settings.enable_sc FROM tbl_InvoiceHeader LEFT JOIN " +
-                    //   "tbl_InvoiceDetail ON tbl_InvoiceHeader.invoice_id = tbl_InvoiceDetail.header_id LEFT JOIN " +
-                    //   "tbl_Tables ON tbl_InvoiceHeader.table_id = tbl_Tables.id LEFT JOIN " +
-                    //   "tbl_TableLocation ON tbl_Tables.location_id = tbl_TableLocation.Id LEFT JOIN " +
-                    //   "tbl_User ON tbl_InvoiceHeader.waiter_id = tbl_User.id LEFT JOIN " +
-                    //   "tbl_Customer ON tbl_InvoiceHeader.customer_id = tbl_Customer.id " +
-                    //   "CROSS JOIN tbl_Company " +
-                    //   "CROSS JOIN tbl_Settings " +
-                    //   "WHERE tbl_InvoiceHeader.invoice_no  = '" + strInvoiceNo + "'  ";
-
-                    //DataAccess.ExecuteSQL(strSQL);
-                    //DataTable result = DataAccess.GetDataTable(strSQL);
-
-                    //ReportDataSource reportDSDetail = new ReportDataSource("dsReceipt", result);
-                    //report.DataSources.Clear();
-                    //report.DataSources.Add(reportDSDetail);
-                    //report.Refresh();
-                    //if (DirectPrint.Print(report, Settings.InvoicePrinter))
-                    //{
-                    //    _frmMain.Clear();
-                    //}
+                if (IsSuccess && !IsDeliveryOrder)
+                { 
+                    if (Settings.PreviewBeforePrint)
+                    {
+                        rprtReceiptFromMain rprtForInvoice = new rprtReceiptFromMain(invoiceId);
+                        ReportPrintTool printTool2 = new ReportPrintTool(rprtForInvoice);
+                        printTool2.ShowPreview();
+                    }
+                    else
+                    {
+                        rprtReceiptFromMain rprtForInvoice = new rprtReceiptFromMain(invoiceId);
+                        ReportPrintTool printTool2 = new ReportPrintTool(rprtForInvoice);
+                        printTool2.Print();
+                    }
                     this.Close();
                 }
-                this.Close();
             }
         }
 
@@ -825,10 +866,10 @@ namespace cypos
             }
             else
             {
-                ValidateUserType validateFrm = new ValidateUserType();
-                validateFrm.ShowDialog();
+                //ValidateUserType validateFrm = new ValidateUserType();
+                //validateFrm.ShowDialog();
 
-                if (validateFrm.userType == "Admin")
+                if (UserInfo.UserType == "Admin")
                 {
                     try
                     {

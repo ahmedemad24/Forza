@@ -65,14 +65,14 @@ namespace cypos
                  {
                      if (lblCategoryId.Text == "-")
                      {
-                         string strSQLInsert = " INSERT INTO tbl_Category (category_name,sort_order,back_color,fore_color,active) VALUES ('" + txtCategoryName.Text + "','" + txtSortOrder.Text + "','" + crpBackColor.Value.ToArgb() + "','" + crpForeColor.Value.ToArgb() + "','" + true + "')";
+                         string strSQLInsert = " INSERT INTO tbl_Category (category_name,sort_order,back_color,fore_color,active) VALUES (N'" + txtCategoryName.Text + "','" + txtSortOrder.Text + "','" + crpBackColor.Value.ToArgb() + "','" + crpForeColor.Value.ToArgb() + "','" + true + "')";
                          DataAccess.ExecuteSQL(strSQLInsert);
                          LoadCategoryList("");
                          Clear();
                      }
                      else 
                      {
-                         string strSQLUpdate = "UPDATE tbl_Category SET category_name = '" + txtCategoryName.Text + "'," +
+                         string strSQLUpdate = "UPDATE tbl_Category SET category_name = N'" + txtCategoryName.Text + "'," +
                               " sort_order= '" + txtSortOrder.Text + "', " +
                               " back_color= '" + crpBackColor.Value.ToArgb() + "', " +
                               " fore_color= '" + crpForeColor.Value.ToArgb() + "'," +

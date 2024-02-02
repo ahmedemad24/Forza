@@ -45,8 +45,8 @@
             this.btnFocusUser = new System.Windows.Forms.Button();
             this.btnFocusPassword = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.keyPad1 = new cypos.KeyPad();
+            this.button1 = new System.Windows.Forms.Button();
             this.pnlLogin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -217,6 +217,15 @@
             this.pictureBox1.TabIndex = 20;
             this.pictureBox1.TabStop = false;
             // 
+            // keyPad1
+            // 
+            this.keyPad1.BackColor = System.Drawing.Color.Transparent;
+            this.keyPad1.Location = new System.Drawing.Point(4, 210);
+            this.keyPad1.Margin = new System.Windows.Forms.Padding(4);
+            this.keyPad1.Name = "keyPad1";
+            this.keyPad1.Size = new System.Drawing.Size(653, 307);
+            this.keyPad1.TabIndex = 25;
+            // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Transparent;
@@ -229,16 +238,8 @@
             this.button1.Size = new System.Drawing.Size(1208, 33);
             this.button1.TabIndex = 29;
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // keyPad1
-            // 
-            this.keyPad1.BackColor = System.Drawing.Color.Transparent;
-            this.keyPad1.Location = new System.Drawing.Point(4, 210);
-            this.keyPad1.Margin = new System.Windows.Forms.Padding(4);
-            this.keyPad1.Name = "keyPad1";
-            this.keyPad1.Size = new System.Drawing.Size(653, 307);
-            this.keyPad1.TabIndex = 25;
             // 
             // frmLogin
             // 

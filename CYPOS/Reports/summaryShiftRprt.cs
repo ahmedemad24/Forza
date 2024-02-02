@@ -22,12 +22,12 @@ namespace cypos.Reports
 
         private void summaryShiftRprt_DataSourceDemanded(object sender, EventArgs e)
         {
-            this.EndDateParam.Value = this.endDateVal;
-            this.StartDateParam.Value = this.startDateVal;
+            this.EndDateParam.Value = DateTime.Parse(this.endDateVal);
+            this.StartDateParam.Value = DateTime.Parse(this.startDateVal);
             this.ShiftIdParam.Value = this.ShiftVal;
         }
 
-        private void ActualyAmount_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        private void ActualyAmount_BeforePrint(object sender, CancelEventArgs e)
         {
 
         }

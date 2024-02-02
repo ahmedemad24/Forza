@@ -176,7 +176,7 @@ namespace cypos.Forms
             if (roleNameTxt.Text.Trim() != "")
             {
                 string strSQLInsert = "INSERT INTO tbl_Roles (name,log_date,IsDeleted)  " +
-                    "VALUES ('" + roleNameTxt.Text + "', '" + DateTime.Now + "', 0)";
+                    "VALUES (N'" + roleNameTxt.Text + "', '" + DateTime.Now.ToString("MM-dd-yyyy") + "', 0)";
                 DataAccess.ExecuteSQL(strSQLInsert);
                 Messages.InformationMessage("Role Added Successfully");
                 Clear();
@@ -193,7 +193,7 @@ namespace cypos.Forms
             if (roleNameTxt.Text != "" )
             {
                 string strSQLUpdate = $"UPDATE tbl_Roles " +
-                    $"SET name = '{roleNameTxt.Text}' " +
+                    $"SET name = N'{roleNameTxt.Text}' " +
                     $"WHERE id = {id}";
                 DataAccess.ExecuteSQL(strSQLUpdate);
                 Messages.InformationMessage("Role Updated Successfully");

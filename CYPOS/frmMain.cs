@@ -439,7 +439,7 @@ namespace cypos
             }
 
             string queryForAllItems = "SELECT * FROM vw_ItemDisplay "
-                                    + $"WHERE parent_item_id IS NULL AND ((item_name LIKE '%{value}%') OR (category_name like '{value}%')) "
+                                    + $"WHERE parent_item_id IS NULL AND ((item_name LIKE N'%{value}%') OR (category_name like N'%{value}%')) "
                                     + "AND (show_pos = 1) "
                                     + "ORDER BY " + sortOrder + " ";
 
@@ -454,7 +454,7 @@ namespace cypos
 
             string queryForFilteredItems = $"SELECT * FROM vw_ItemDisplay "
                                          + $"WHERE parent_item_id IS NULL "
-                                         + $"AND ((item_name LIKE '%{value}%') OR (category_name like '{value}%')) AND (show_pos = 1) "
+                                         + $"AND ((item_name LIKE N'%{value}%') OR (category_name like N'{value}%')) AND (show_pos = 1) "
                                          + $"Order By " + sortOrder + " "
                                          + $"OFFSET " + startIndex + " ROWS "
                                          + $"FETCH NEXT " + itemsPerPage + " ROWS ONLY ";
@@ -1373,7 +1373,7 @@ namespace cypos
                               '{int.Parse(lblTableId.Text)}','{int.Parse(string.IsNullOrEmpty(lblNoOfGuests.Text) ? "0" : lblNoOfGuests.Text)}','{int.Parse(lblWaiterId.Text)}','{int.Parse(lblCustomerId.Text)}','{strPaymentType}',
                               '{decPayAmount}','{decPaidAmount}','{decChangeAmount}','{decDueAmount}', '{Convert.ToDecimal(txtDiscountRate.Text)}','{Convert.ToDecimal(lblOverallDiscount.Text)}',
                               '{strTax1Name}','{Convert.ToDecimal(lblTax1Rate.Text)}','{Convert.ToDecimal(lblTotalTax1.Text)}','{strTax2Name}','{Convert.ToDecimal(lblTax2Rate.Text)}','{Convert.ToDecimal(lblTotalTax2.Text)}',
-                              '{lblScRate.Text}','{Convert.ToDecimal(lblScAmount.Text)}','{strNote}','{UserInfo.UserName}',getDate(),{(isCanceled ? 1 : 0).ToString()},{(isGifted ? 1 : 0).ToString()},{(strOtId == "3" ? DeliveryFees.Text : "0")}) SELECT SCOPE_IDENTITY()";
+                              '{lblScRate.Text}','{Convert.ToDecimal(lblScAmount.Text)}',N'{strNote}','{UserInfo.UserName}',getDate(),{(isCanceled ? 1 : 0).ToString()},{(isGifted ? 1 : 0).ToString()},{(strOtId == "3" ? DeliveryFees.Text : "0")}) SELECT SCOPE_IDENTITY()";
             int HeaderId = DataAccess.ExecuteScalarSQL(strSQLHeader);
             headerId = HeaderId;
             int rows = dgvItemList.Rows.Count;
@@ -1405,7 +1405,7 @@ namespace cypos
 
                 string strSQLDetail = $@"INSERT INTO tbl_InvoiceDetail (header_id,invoice_date,invoice_time,item_code,item_name,qty,selling_price,
                                       total, profit, discount ,discount_amount,net_amount,tax_apply,show_kitchen, print_kot,kot_qty,log_date)
-                                       VALUES ('{HeaderId}','{strInvoiceDate}',N'{strInvoiceTime}','{strItemCode}','{strItemName}','{dblQty}',
+                                       VALUES ('{HeaderId}','{strInvoiceDate}',N'{strInvoiceTime}','{strItemCode}',N'{strItemName}','{dblQty}',
                                       '{dblPrice}', '{dblTotal}','0','{dblDiscount}','{dblDiscountAmount}','{dblNetAmount}','{isTaxApply}',
                                       '{isKitchenDisplay}','{isPrintKot}','{dblKotQty}',getDate())";
                 DataAccess.ExecuteSQL(strSQLDetail);
@@ -1471,7 +1471,7 @@ namespace cypos
                               " '" + Convert.ToDecimal(txtDiscountRate.Text) + "','" + Convert.ToDecimal(lblOverallDiscount.Text) + "'," +
                               " '" + strTax1Name + "','" + Convert.ToDecimal(lblTax1Rate.Text) + "','" + Convert.ToDecimal(lblTotalTax1.Text) + "'," +
                               " '" + strTax2Name + "','" + Convert.ToDecimal(lblTax2Rate.Text) + "','" + Convert.ToDecimal(lblTotalTax2.Text) + "'," +
-                              " '" + lblScRate.Text + "','" + Convert.ToDecimal(lblScAmount.Text) + "','" + strNote + "','" + UserInfo.UserName + "',getDate()," + (isCanceled ? 1 : 0).ToString() + "," + (isGifted ? 1 : 0).ToString() + "," + (strOtId == "3" ? DeliveryFees.Text : "0") + ") SELECT SCOPE_IDENTITY()";
+                              " '" + lblScRate.Text + "','" + Convert.ToDecimal(lblScAmount.Text) + "',N'" + strNote + "','" + UserInfo.UserName + "',getDate()," + (isCanceled ? 1 : 0).ToString() + "," + (isGifted ? 1 : 0).ToString() + "," + (strOtId == "3" ? DeliveryFees.Text : "0") + ") SELECT SCOPE_IDENTITY()";
             int HeaderId = DataAccess.ExecuteScalarSQL(strSQLHeader);
             headerId = HeaderId;
             int rows = dgvItemList.Rows.Count;
@@ -1503,7 +1503,7 @@ namespace cypos
 
                 string strSQLDetail = "INSERT INTO tbl_InvoiceDetail (header_id,invoice_date,invoice_time,item_code,item_name,qty,selling_price," +
                                       "total, profit, discount ,discount_amount,net_amount,tax_apply,show_kitchen, print_kot,kot_qty,log_date) " +
-                                      " VALUES ('" + HeaderId + "','" + strInvoiceDate + "',N'" + strInvoiceTime + "','" + strItemCode + "','" + strItemName + "','" + dblQty + "'," +
+                                      " VALUES ('" + HeaderId + "','" + strInvoiceDate + "',N'" + strInvoiceTime + "','" + strItemCode + "',N'" + strItemName + "','" + dblQty + "'," +
                                       "'" + dblPrice + "', '" + dblTotal + "','" + "0" + "','" + dblDiscount + "'," +
                                        "'" + dblDiscountAmount + "','" + dblNetAmount + "','" + isTaxApply + "'," +
                                       "'" + isKitchenDisplay + "','" + isPrintKot + "','" + dblKotQty + "',getDate())";
@@ -1586,7 +1586,7 @@ namespace cypos
                             + $", DeliveryFees, shift_id) "
                             + $"SELECT {(isCanceled ? "getDate()" : "'null'")}, order_type,invoiceNo, invoice_date, invoice_time, kot_no, customer_id, '{strPaymentType}', "
                             + $"payment_amount, discount_rate, discount_amount, tax1_name, tax1_rate, tax1_amount"
-                            + $", tax2_name, tax2_rate, tax2_amount, sc_rate, sc_charge, '{strNote}', '{UserInfo.UserName}', getDate() "
+                            + $", tax2_name, tax2_rate, tax2_amount, sc_rate, sc_charge, N'{strNote}', '{UserInfo.UserName}', getDate() "
                             + $", {(isCanceled ? 1 : 0)}, {(isGifted ? 1 : 0)}, deliveryFees, shift_id "
                             + $"FROM tbl_TempHeader t "
                             + $"WHERE t.id = '{id}' "
@@ -2196,7 +2196,7 @@ namespace cypos
                             " WHERE id = " + UserInfo.UserShiftCode;
                             int success = DataAccess.ExecuteSQL(query);
 
-                            summaryShiftRprt summaryShiftRprt = new summaryShiftRprt(frmEndShift.startDate.ToString(), frmEndShift.EndDate.ToString(), frmEndShift.ShiftCode.ToString());
+                            summaryShiftRprt summaryShiftRprt = new summaryShiftRprt(frmEndShift.startDate.ToString("yyyy-MM-dd HH:mm:ss.fff"), frmEndShift.EndDate.ToString("yyyy-MM-dd HH:mm:ss.fff"), frmEndShift.ShiftCode.ToString());
                             summaryShiftRprt.UserName.Text = frmEndShift.userName.ToString();
                             //summaryShiftRprt.EndShiftAmount.Value = frmEndShift.EndAmount.ToString();
 
@@ -2227,7 +2227,7 @@ namespace cypos
                             " WHERE id = " + UserInfo.UserShiftCode;
                         int success = DataAccess.ExecuteSQL(query);
 
-                        summaryShiftRprt summaryShiftRprt = new summaryShiftRprt(frmEndShift.startDate.ToString(), frmEndShift.EndDate.ToString(), frmEndShift.ShiftCode.ToString());
+                        summaryShiftRprt summaryShiftRprt = new summaryShiftRprt(frmEndShift.startDate.ToString("yyyy-MM-dd HH:mm:ss.fff"), frmEndShift.EndDate.ToString("yyyy-MM-dd HH:mm:ss.fff"), frmEndShift.ShiftCode.ToString());
                         summaryShiftRprt.UserName.Text = frmEndShift.userName.ToString();
                         //summaryShiftRprt.EndShiftAmount.Text = frmEndShift.EndAmount.ToString();
 
@@ -2671,7 +2671,7 @@ namespace cypos
                                   " '" + Convert.ToDecimal(txtDiscountRate.Text) + "','" + Convert.ToDecimal(lblOverallDiscount.Text) + "'," +
                                   " '" + strTax1Name + "','" + Convert.ToDecimal(lblTax1Rate.Text) + "','" + Convert.ToDecimal(lblTotalTax1.Text) + "'," +
                                   " '" + strTax2Name + "','" + Convert.ToDecimal(lblTax2Rate.Text) + "','" + Convert.ToDecimal(lblTotalTax2.Text) + "'," +
-                                  " '" + lblScRate.Text + "','" + lblScAmount.Text + "','" + strNote + "','" + UserInfo.UserName + "',getDate()) " +
+                                  " '" + lblScRate.Text + "','" + lblScAmount.Text + "',N'" + strNote + "','" + UserInfo.UserName + "',getDate()) " +
                                   "SELECT SCOPE_IDENTITY()";
             int HeaderId = DataAccess.ExecuteScalarSQL(strSQLHeader);
             tempHeaderId = HeaderId;
@@ -2767,7 +2767,7 @@ namespace cypos
                     {
                         string strSQLDetail = "INSERT INTO tbl_TempDetail (header_id, item_code, item_name, qty, selling_price, total, profit, discount" +
                                                 ", tax_apply, show_kitchen, print_kot, kot_qty, comment, log_date) " +
-                                              $"VALUES ('{HeaderId}', '{strItemCode}', '{strItemName}', '{dblQty}', '{dblPrice}'" +
+                                              $"VALUES ('{HeaderId}', '{strItemCode}', N'{strItemName}', '{dblQty}', '{dblPrice}'" +
                                               $", '{dblTotal}', '0', '{dblDiscount}', '{isTaxApply}', '{isKitchenDisplay}', '{isPrintKot}', '{dblKotQty}'" +
                                               $", (N'{comment}'), getDate() )";
                         DataAccess.ExecuteSQL(strSQLDetail);
@@ -2777,7 +2777,7 @@ namespace cypos
                 {
                     string strSQLDetail = "INSERT INTO tbl_TempDetail (header_id, item_code, item_name, qty, selling_price, total, profit, discount" +
                                         ", tax_apply, show_kitchen, print_kot, kot_qty, comment, log_date) " +
-                                          $"VALUES ('{HeaderId}', '{strItemCode}', '{strItemName}', '{dblQty}', '{dblPrice}'" +
+                                          $"VALUES ('{HeaderId}', '{strItemCode}', N'{strItemName}', '{dblQty}', '{dblPrice}'" +
                                           $", '{dblTotal}', '0', '{dblDiscount}', '{isTaxApply}', '{isKitchenDisplay}', '{isPrintKot}', '{dblKotQty}'" +
                                           $", (N'{comment}'), getDate())";
                     DataAccess.ExecuteSQL(strSQLDetail);
@@ -3136,6 +3136,8 @@ namespace cypos
         #region Modifiers
         private void btnModifier_Click(object sender, EventArgs e)
         {
+            try
+            {
             frmModifierList frmModifierList = new frmModifierList(this); ///shorouq if empty message box
             DataGridViewSelectedRowCollection rows = dgvItemList.SelectedRows;
             DataGridViewCell ItemCodeCell = dgvItemList.SelectedCells[0] as DataGridViewCell;
@@ -3150,6 +3152,12 @@ namespace cypos
             frmModifierList.ItemName = strItemName;
             frmModifierList.ModifierIds = strModifierIds;
             frmModifierList.ShowDialog();
+            }
+            catch
+            {
+                MessageBox.Show("select row");
+            }
+            
         }
 
         public void AddRemoveModifiers(string strItemCode, string strModifierName, Image imgBackground, string strPlusOrMinus, decimal decModifierPrice, int iModifierId)

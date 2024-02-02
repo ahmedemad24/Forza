@@ -269,6 +269,7 @@ namespace cypos
                         }
                     }
                     rolesTreeView.Nodes.Add(node);
+                    rolesTreeView.ExpandAll();
                 }
             }
         }

@@ -169,7 +169,7 @@ namespace cypos
                                         UserInfo.Privilege.Add(int.Parse(item["form_id"].ToString()));
                                     }
                                 }
-                                if (UserInfo.IsVaild(1))
+                                if (UserInfo.IsVaild(1)||UserInfo.UserType=="Admin")
                                 {
                                     if (StartShift())
                                     {

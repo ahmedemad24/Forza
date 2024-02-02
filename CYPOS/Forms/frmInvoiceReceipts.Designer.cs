@@ -55,9 +55,10 @@ namespace cypos.Forms
             this.AvoidInvBtn = new System.Windows.Forms.Button();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.pnlInner = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.filterBoxPnl = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.cmbCustomer = new System.Windows.Forms.ComboBox();
+            this.cmbCustomer = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -77,7 +78,6 @@ namespace cypos.Forms
             this.lblTitle = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInvoiceReceipts)).BeginInit();
             this.pnlMain.SuspendLayout();
             this.pnlInner.SuspendLayout();
@@ -356,6 +356,16 @@ namespace cypos.Forms
             this.pnlInner.TabIndex = 16;
             this.pnlInner.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlInner_Paint);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(994, 615);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(115, 56);
+            this.button2.TabIndex = 215;
+            this.button2.Text = "Pay_Due";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // filterBoxPnl
             // 
             this.filterBoxPnl.Controls.Add(this.label2);
@@ -378,26 +388,24 @@ namespace cypos.Forms
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(767, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(115, 18);
+            this.label2.Size = new System.Drawing.Size(94, 14);
             this.label2.TabIndex = 212;
             this.label2.Text = "Customer Name";
             // 
             // cmbCustomer
             // 
-            this.cmbCustomer.DropDownWidth = 206;
-            this.cmbCustomer.FormattingEnabled = true;
-            this.cmbCustomer.ItemHeight = 18;
             this.cmbCustomer.Location = new System.Drawing.Point(771, 34);
             this.cmbCustomer.Name = "cmbCustomer";
-            this.cmbCustomer.Size = new System.Drawing.Size(206, 26);
+            this.cmbCustomer.Size = new System.Drawing.Size(206, 22);
             this.cmbCustomer.TabIndex = 211;
+            this.cmbCustomer.TextChanged += new System.EventHandler(this.cmbCustomer_TextChanged);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(15, 7);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(57, 18);
+            this.label9.Size = new System.Drawing.Size(48, 14);
             this.label9.TabIndex = 209;
             this.label9.Text = "Shift ID";
             // 
@@ -405,7 +413,7 @@ namespace cypos.Forms
             // 
             this.textBox1.Location = new System.Drawing.Point(19, 35);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 26);
+            this.textBox1.Size = new System.Drawing.Size(100, 22);
             this.textBox1.TabIndex = 210;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
             // 
@@ -414,7 +422,7 @@ namespace cypos.Forms
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(125, 7);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(78, 18);
+            this.label6.Size = new System.Drawing.Size(64, 14);
             this.label6.TabIndex = 204;
             this.label6.Text = "From Date";
             // 
@@ -425,7 +433,7 @@ namespace cypos.Forms
             this.fromDate.Location = new System.Drawing.Point(131, 34);
             this.fromDate.Name = "fromDate";
             this.fromDate.ShowCheckBox = true;
-            this.fromDate.Size = new System.Drawing.Size(200, 26);
+            this.fromDate.Size = new System.Drawing.Size(200, 22);
             this.fromDate.TabIndex = 202;
             this.fromDate.ValueChanged += new System.EventHandler(this.fromDate_ValueChanged);
             // 
@@ -434,7 +442,7 @@ namespace cypos.Forms
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(551, 9);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(75, 18);
+            this.label8.Size = new System.Drawing.Size(61, 14);
             this.label8.TabIndex = 207;
             this.label8.Text = "Username";
             // 
@@ -442,10 +450,10 @@ namespace cypos.Forms
             // 
             this.UsernameComb.DropDownWidth = 206;
             this.UsernameComb.FormattingEnabled = true;
-            this.UsernameComb.ItemHeight = 18;
+            this.UsernameComb.ItemHeight = 14;
             this.UsernameComb.Location = new System.Drawing.Point(555, 34);
             this.UsernameComb.Name = "UsernameComb";
-            this.UsernameComb.Size = new System.Drawing.Size(206, 26);
+            this.UsernameComb.Size = new System.Drawing.Size(206, 22);
             this.UsernameComb.TabIndex = 206;
             this.UsernameComb.SelectedIndexChanged += new System.EventHandler(this.UsernameComb_SelectedIndexChanged);
             // 
@@ -454,7 +462,7 @@ namespace cypos.Forms
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(333, 7);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(62, 18);
+            this.label7.Size = new System.Drawing.Size(52, 14);
             this.label7.TabIndex = 205;
             this.label7.Text = "To Date";
             // 
@@ -465,7 +473,7 @@ namespace cypos.Forms
             this.ToDate.Location = new System.Drawing.Point(339, 34);
             this.ToDate.Name = "ToDate";
             this.ToDate.ShowCheckBox = true;
-            this.ToDate.Size = new System.Drawing.Size(200, 26);
+            this.ToDate.Size = new System.Drawing.Size(200, 22);
             this.ToDate.TabIndex = 203;
             this.ToDate.ValueChanged += new System.EventHandler(this.ToDate_ValueChanged);
             // 
@@ -474,7 +482,7 @@ namespace cypos.Forms
             this.rowsCountLbl.AutoSize = true;
             this.rowsCountLbl.Location = new System.Drawing.Point(631, 639);
             this.rowsCountLbl.Name = "rowsCountLbl";
-            this.rowsCountLbl.Size = new System.Drawing.Size(0, 18);
+            this.rowsCountLbl.Size = new System.Drawing.Size(0, 14);
             this.rowsCountLbl.TabIndex = 213;
             // 
             // label1
@@ -482,7 +490,7 @@ namespace cypos.Forms
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(10, 638);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(110, 18);
+            this.label1.Size = new System.Drawing.Size(93, 14);
             this.label1.TabIndex = 212;
             this.label1.Text = "Note For Avoid:";
             // 
@@ -490,7 +498,7 @@ namespace cypos.Forms
             // 
             this.textBox2.Location = new System.Drawing.Point(144, 631);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(323, 26);
+            this.textBox2.Size = new System.Drawing.Size(323, 22);
             this.textBox2.TabIndex = 211;
             // 
             // panel1
@@ -565,7 +573,7 @@ namespace cypos.Forms
             this.lblTitle.Location = new System.Drawing.Point(9, 10);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(169, 23);
+            this.lblTitle.Size = new System.Drawing.Size(133, 18);
             this.lblTitle.TabIndex = 8;
             this.lblTitle.Text = "Invoice Reciepts";
             // 
@@ -581,19 +589,9 @@ namespace cypos.Forms
             this.button1.Click += new System.EventHandler(this.button1_Click);
             this.button1.MouseHover += new System.EventHandler(this.button1_MouseHover);
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(994, 615);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(115, 56);
-            this.button2.TabIndex = 215;
-            this.button2.Text = "Pay_Due";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // frmInvoiceReceipts
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1210, 714);
@@ -666,7 +664,7 @@ namespace cypos.Forms
         private System.Windows.Forms.DataGridViewTextBoxColumn log_date;
         private System.Windows.Forms.DataGridViewTextBoxColumn note;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cmbCustomer;
+        private System.Windows.Forms.TextBox cmbCustomer;
         private System.Windows.Forms.Button button2;
     }
 }
