@@ -197,7 +197,7 @@ namespace cypos
                 {
                     strSQL = " SELECT cs.*,r.RegionName, iif(cs.RegionId is null , 0 ,cs.RegionId) RegionId ,r.ServiceAmount FROM tbl_Customer as cs " +
                             "left join  tbl_region as r on cs.RegionId = r.RegionId " +
-                            " WHERE cs.IsDeleted = 0 AND " + strFieldName + "  LIKE  '%" + strSearchText + "%'";
+                            " WHERE cs.IsDeleted = 0 AND " + strFieldName + "  LIKE  N'%" + strSearchText + "%'";
                 }
                 else
                 {
@@ -253,7 +253,7 @@ namespace cypos
                         if (lblCustomerId.Text == "-")
                         {
                             {
-                                string strSQLInsert = "INSERT INTO tbl_Customer (name,address,RegionId, phone,email)  VALUES ('" + txtName.Text + "', '" + txtAddress.Text + "', '" + region.SelectedValue.ToString() + "', '" + txtPhone.Text + "', '" + txtEmail.Text + "'); SELECT @@IDENTITY";
+                                string strSQLInsert = "INSERT INTO tbl_Customer (name,address,RegionId, phone,email)  VALUES (N'" + txtName.Text + "', '" + txtAddress.Text + "', '" + region.SelectedValue.ToString() + "', '" + txtPhone.Text + "', '" + txtEmail.Text + "'); SELECT @@IDENTITY";
                                 int LastInsertedId = DataAccess.ExecuteScalarSQL(strSQLInsert);
 
                                 _frmMain.SetCustomer(LastInsertedId, txtName.Text, decimal.Parse(dt.Rows[0][0].ToString()));
@@ -262,7 +262,7 @@ namespace cypos
                         }
                         else
                         {
-                            string strSQLUpdate = "UPDATE tbl_Customer SET name = '" + txtName.Text + "', address= '" + txtAddress.Text + "', RegionId= '" + region.SelectedValue.ToString() + "', Phone = '" + txtPhone.Text + "', email = '" + txtEmail.Text + "' WHERE id = '" + lblCustomerId.Text + "'";
+                            string strSQLUpdate = "UPDATE tbl_Customer SET name = N'" + txtName.Text + "', address= '" + txtAddress.Text + "', RegionId= '" + region.SelectedValue.ToString() + "', Phone = '" + txtPhone.Text + "', email = '" + txtEmail.Text + "' WHERE id = '" + lblCustomerId.Text + "'";
                             DataAccess.ExecuteSQL(strSQLUpdate);
                             _frmMain.SetCustomer(int.Parse(lblCustomerId.Text), txtName.Text, decimal.Parse(dt.Rows[0][0].ToString()));
                             Messages.InformationMessage("Customer is successfully updated ,and selected");
@@ -288,11 +288,11 @@ namespace cypos
                 if (e.RowIndex >= 0)
                 {
                     lblCustomerId.Text = dgvCustomers.CurrentRow.Cells["clmId"].Value.ToString();
-                    txtName.Text = dgvCustomers.CurrentRow.Cells["clmName"].Value.ToString();
                     txtAddress.Text = dgvCustomers.CurrentRow.Cells["clmAddress"].Value.ToString();
                     txtPhone.Text = dgvCustomers.CurrentRow.Cells["clmPhone"].Value.ToString();
                     txtEmail.Text = dgvCustomers.CurrentRow.Cells["clmEmail"].Value.ToString();
                     var clmRegion = dgvCustomers.CurrentRow.Cells["clmRegionId"].Value.ToString();
+                    txtName.Text = dgvCustomers.CurrentRow.Cells["clmName"].Value.ToString();
                     if (x.Contains(string.IsNullOrEmpty(clmRegion)? 0 : int.Parse(clmRegion)))
                     {
                         region.SelectedValue = clmRegion;
@@ -429,7 +429,7 @@ namespace cypos
                 txtPhone.Text.Trim() != "" &&
                 !region.SelectedValue.Equals(0))
             {
-                string strSQLInsert = "INSERT INTO tbl_Customer (name,address,RegionId, phone,email)  VALUES ('" + txtName.Text + "', '" + txtAddress.Text + "','" + region.SelectedValue + "','" + txtPhone.Text + "', '" + txtEmail.Text + "')";
+                string strSQLInsert = "INSERT INTO tbl_Customer (name,address,RegionId, phone,email)  VALUES (N'" + txtName.Text + "', '" + txtAddress.Text + "','" + region.SelectedValue + "','" + txtPhone.Text + "', '" + txtEmail.Text + "')";
                 DataAccess.ExecuteSQL(strSQLInsert);
                 Messages.InformationMessage("Customer Added Successfully");
                 CustomerGridFill();

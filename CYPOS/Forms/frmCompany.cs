@@ -142,9 +142,9 @@ namespace cypos
 
                     string strLogo = txtCompanyName.Text.Substring(0, txtCompanyName.Text.IndexOf(' ')).ToLower() + "_logo" + lblFileExtension.Text;
 
-                    string strSQLUpdate = "UPDATE tbl_Company SET company_name= '" + txtCompanyName.Text + "', company_address = '" + txtCompanyAddress.Text + "'," +
+                    string strSQLUpdate = "UPDATE tbl_Company SET company_name= N'" + txtCompanyName.Text + "', company_address = N'" + txtCompanyAddress.Text + "'," +
                             " company_phone = '" + txtPhone.Text + "', email = '" + txtEmail.Text + "', web = '" + txtWebSite.Text + "'," +
-                            " tax_no = '" + txtTaxRegNo.Text + "' , footer_message = '" + txtFootermsg.Text + "' , logo = '" + strLogo + "'," +
+                            " tax_no = '" + txtTaxRegNo.Text + "' , footer_message = N'" + txtFootermsg.Text + "' , logo = '" + strLogo + "'," +
                             " tax_type = '" + strTaxtype + "', tax1_name = '" + txtTax1Name.Text + "', tax1_rate = '" + txtTax1Rate.Text + "'," +
                             " tax2_name = '" + txtTax2Name.Text + "', tax2_rate= '" + txtTax2Rate.Text + "', cal_method = '" + intCalMethod + "'";
                     DataAccess.ExecuteSQL(strSQLUpdate);

@@ -160,7 +160,7 @@ namespace cypos.Forms
                                         , header.waiter_id, header.customer_id, header.payment_type, 0, 0, 0, 0
                                         , 0, 0, '{strTax1Name}', header.tax1_rate, header.tax1_amount, '{strTax2Name}'
                                         ,header.tax2_rate, header.tax2_amount, header.sc_rate, header.sc_charge, ' ... Splited'
-                                        , header.user_name, '{DateTime.Now}'
+                                        , header.user_name, '{DateTime.Now.ToString("MM-dd-yyyy")}'
                                     
                                         FROM tbl_TempHeader header
                                         WHERE id = {header_id} SELECT SCOPE_IDENTITY();";

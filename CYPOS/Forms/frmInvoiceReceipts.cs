@@ -98,7 +98,7 @@ namespace cypos.Forms
             rowsCountLbl.Text = dgvInvoiceReceipts.Rows.Count.ToString() + " Invoices Found";
         }
 
-        private void Search(string fromdate = "", string toDate = "", int shiftId = 0, string username = "", string invNo = "")
+        private void Search(string fromdate = "", string toDate = "", int shiftId = 0, string username = "", string invNo = "", string customerName = "")
         {
             try
             {
@@ -142,6 +142,7 @@ where
      (cast('{toDate}' as date) >= cast(log_date as date) and '{fromdate}'='') or 
      ('{toDate}' ='' and cast('{fromdate}' as date) <= cast(log_date as date)) or 
      (cast('{toDate}' as date) >= cast(log_date as date) and cast('{fromdate}' as date) <= cast(log_date as date)))
+    {(customerName!=""?$"and c.name like N'%{customerName}%'":"")}
 ORDER BY log_date DESC";
 
                 DataTable dt = DataAccess.GetDataTable(FilterQuery);
@@ -308,10 +309,10 @@ ORDER BY log_date DESC";
 
         private void prntInvBtn_Click(object sender, EventArgs e)
         {
-            ValidateUserType validateFrm = new ValidateUserType();
-            validateFrm.ShowDialog();
+            //ValidateUserType validateFrm = new ValidateUserType();
+            //validateFrm.ShowDialog();
 
-            if (validateFrm.userType == "Admin")
+            if (UserInfo.UserType == "Admin")
             {
                 try
                 {
@@ -392,7 +393,15 @@ ORDER BY log_date DESC";
                             }
                             else
                             {
-                                string query = $"UPDATE tbl_InvoiceHeader SET isCanceled =  1, user_name='{UserInfo.UserName}',CancelDate = '{DateTime.Now}' , note = '{note}' WHERE invoice_id = {int.Parse(id)}";
+                                string query = $@"
+update i
+set stock_quantity = stock_quantity+d.qty
+from tbl_InvoiceDetail d
+left join tbl_Item i on i.item_code=d.item_code
+where header_id={int.Parse(id)}
+
+UPDATE tbl_InvoiceHeader SET isCanceled =  1, user_name='{UserInfo.UserName}',CancelDate = '{DateTime.Now.ToString("MM-dd-yyyy")}' , note = '{note}' WHERE invoice_id = {int.Parse(id)}";
+                                
                                 DataAccess.ExecuteSQL(query);
                                 Clear();
                             }
@@ -466,6 +475,15 @@ ORDER BY log_date DESC";
                 frmPayment.customerId = int.Parse(dgvInvoiceReceipts.CurrentRow.Cells["customer_id"].Value.ToString());
                 frmPayment.ShowDialog();
             }
+        }
+
+        private void cmbCustomer_TextChanged(object sender, EventArgs e)
+        {
+            Search(
+                fromDate.Checked ? fromDate.Value.Date.ToString("MM-dd-yyyy") : ""
+                , ToDate.Checked ? ToDate.Value.Date.ToString("MM-dd-yyyy") : ""
+                , string.IsNullOrEmpty(textBox1.Text) ? 0 : Convert.ToInt32(textBox1.Text)
+                , UsernameComb.Items.Count == 0 ? "" : UsernameComb.SelectedValue.ToString(), "", (sender as TextBox).Text);
         }
     }
 }

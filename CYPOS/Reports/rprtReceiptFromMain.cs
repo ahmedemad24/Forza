@@ -22,7 +22,7 @@ namespace cypos.Reports
             this.HeaderId.SelectAllValues = true;
         }
 
-        private void xrTableRow9_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        private void xrTableRow9_BeforePrint(object sender, CancelEventArgs e)
         {
             if(xrTableCell10.Text != "DELIVERY")
                 xrTableRow9.Visible = false;
@@ -30,32 +30,33 @@ namespace cypos.Reports
                 xrTableRow9.Visible = true;
         }
 
-        private void xrTableRow12_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+
+        private void xrTableRow14_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
-            if (xrTableCell10.Text != "DELIVERY")
+            //if (xrTableCell10.Text != "DELIVERY")
+            //{
+            //    xrTableRow12.Visible = false;
+            //    xrTableRow13.Visible = false;
+            //    xrTableRow14.Visible = true;
+            //}
+            //else
+            //{
+            //    xrTableRow12.Visible = true;
+            //    xrTableRow13.Visible = true;
+            //    xrTableRow14.Visible = true;
+            //}
+
+            if (xrTableCell10.Text != "DINE IN")
             {
-                xrTableRow12.Visible = false;
-                xrTableRow13.Visible = false;
+                xrTableRow15.Visible = false;
+                xrTableRow16.Visible = false;
             }
             else
             {
-                xrTableRow12.Visible = true;
-                xrTableRow13.Visible = true;
-            }
+                xrTableRow15.Visible = true;
+                xrTableRow16.Visible = true;
+            }      
         }
 
-        private void xrTableRow2_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
-        {
-            if(xrTableCell10.Text == "TAKE AWAY")
-            {
-                xrTableCell4.Visible = false;
-                xrTableCell8.Visible = false;
-            }
-            else
-            {
-                xrTableCell4.Visible = true;
-                xrTableCell8.Visible = true;
-            }
-        }
     }
 }

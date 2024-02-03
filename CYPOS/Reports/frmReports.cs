@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +12,8 @@ using System.Windows.Forms;
 using Microsoft.Reporting.WinForms;
 using System.Runtime.InteropServices;
 using System.IO;
+using cypos.Reports;
+using DevExpress.XtraReports.UI;
 
 namespace cypos
 {
@@ -63,6 +65,7 @@ namespace cypos
             dgvReports.Rows.Add("ZReport", "Z Report");
             dgvReports.Rows.Add("StockReport", "Stock Report");
             dgvReports.Rows.Add("ReOrderReport", "Item Re-Order");
+            dgvReports.Rows.Add("ShiftReport", "Shift Summary");
             dgvReports.ClearSelection();
         }
 
@@ -111,11 +114,16 @@ namespace cypos
         public void LoadReport(string REPORT)
         {
             strReport = REPORT;
-            this.rptViewer.ShowToolBar = false;
-            this.rptViewer.HorizontalScroll.Visible = false;
-            this.rptViewer.SetDisplayMode(DisplayMode.PrintLayout);
-            this.rptViewer.ZoomMode = ZoomMode.PageWidth;
-            //this.reportViewer1.ZoomPercent = 80;
+            if (REPORT != "ShiftReport")
+            {
+                this.rptViewer.ShowToolBar = false;
+                this.rptViewer.HorizontalScroll.Visible = false;
+                this.rptViewer.SetDisplayMode(DisplayMode.PrintLayout);
+                this.rptViewer.ZoomMode = ZoomMode.PageWidth;
+                panel1.Visible = true;
+            }
+            else
+                panel1.Visible = false;
 
             if (REPORT == "ZReport")
             {
@@ -166,6 +174,15 @@ namespace cypos
                 pnlCombo.Visible = true;
                 FillCategory();
                 LoadReOrderReport();
+            }
+            else if (REPORT == "ShiftReport")
+            {
+                lblSearchField.Text = "User :";
+                pnlHeader.Visible = true;
+                pnlDate.Visible = true;
+                pnlCombo.Visible = true;
+                FillUsers();
+                LoadSummaryShifts();
             }
         }
 
@@ -498,6 +515,17 @@ namespace cypos
             this.rptViewer.LocalReport.Refresh();
             this.rptViewer.RefreshReport();
         }
+        public void LoadSummaryShifts()
+        {
+            if (cmbSearch.SelectedValue.ToString() == "0" || cmbShiftId.SelectedValue == null || cmbShiftId.SelectedValue.ToString() == "System.Data.DataRowView" )
+                return;
+
+            summaryShiftRprt summaryShiftRprt = new summaryShiftRprt(((DataRowView)cmbShiftId.SelectedItem).Row.ItemArray[2].ToString(), ((DataRowView)cmbShiftId.SelectedItem).Row.ItemArray[3].ToString(), cmbShiftId.SelectedValue.ToString());
+            summaryShiftRprt.UserName.Text = cmbSearch.SelectedText.ToString();
+
+            ReportPrintTool printTool = new ReportPrintTool(summaryShiftRprt);
+            printTool.ShowPreview();
+        }
 
         private void FillPaymentType()
         {
@@ -526,9 +554,56 @@ namespace cypos
             cmbSearch.DisplayMember = "category_name";
             cmbSearch.ValueMember = "id";
         }
+        private void FillUsers()
+        {
+            string strSQL = "SELECT * FROM tbl_user ORDER BY id ";
+            DataAccess.ExecuteSQL(strSQL);
+            DataTable dtUser = DataAccess.GetDataTable(strSQL);
+            DataRow drow = dtUser.NewRow();
+            drow["id"] = "0";
+            drow["name"] = "All Users";
+            dtUser.Rows.InsertAt(drow, 0);
+            cmbSearch.DataSource = dtUser;
+            cmbSearch.DisplayMember = "name";
+            cmbSearch.ValueMember = "id";
+        }
+
+        private void FillShift()
+        {
+            string qry = $@"
+select 
+    id as id , 'Shift '+ cast(id as nvarchar(10)) as ShiftId ,start_ShiftDate,end_ShiftDate
+    --,CONVERT(VARCHAR, start_ShiftDate, 32) start_ShiftDate
+    --,CONVERT(VARCHAR, end_ShiftDate, 32) end_ShiftDate 
+from tbl_UserShifts
+where  cast(start_ShiftDate as date)>=cast('{dtpDateFrom.Value.ToString("MM-dd-yyyy")}'as date)
+and cast(end_ShiftDate as date)<=cast('{dtpDateTo.Value.ToString("MM-dd-yyyy")}'as date)
+{(cmbSearch.SelectedIndex <= 0 ? "" : $"and userId={cmbSearch.SelectedValue}")}";
+
+            DataTable dt = DataAccess.GetDataTable(qry);
+            lblShiftId.Visible = true;
+            cmbShiftId.Visible = true;
+            if (dt.Rows.Count > 0)
+            {
+                DataRow drow = dt.NewRow();
+                drow["id"] = "0";
+                drow["ShiftId"] = "Please select shift";
+                dt.Rows.InsertAt(drow, 0);
+                cmbShiftId.DataSource = dt;
+                cmbShiftId.DisplayMember = "ShiftId";
+                cmbShiftId.ValueMember = "id";
+            }
+            else
+            {
+                lblShiftId.Visible = false;
+                cmbShiftId.Visible = false;
+            }
+        }
 
         private void dgvReports_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            cmbShiftId.Visible = false;
+            lblShiftId.Visible = false;
             this.rptViewer.Reset();
             LoadReport(dgvReports.Rows[e.RowIndex].Cells[0].Value.ToString());
         }
@@ -551,6 +626,11 @@ namespace cypos
             {
                 LoadReOrderReport();
             }
+            if (strReport == "ShiftReport")
+            {
+                if(cmbSearch.SelectedIndex > 0)
+                    FillShift();
+            }
         }
 
         private void dtpDateFrom_ValueChanged(object sender, EventArgs e)
@@ -571,6 +651,14 @@ namespace cypos
             {
                 LoadSalesByCategory();
             }
+            else if (strReport == "ShiftReport")
+            {
+                cmbShiftId.DataSource = null;
+                cmbShiftId.Items.Clear();
+                cmbShiftId.Visible = false;
+                lblShiftId.Visible = false;
+                cmbSearch.SelectedIndex = 0;
+            }
         }
 
         private void dtpDateTo_ValueChanged(object sender, EventArgs e)
@@ -590,6 +678,14 @@ namespace cypos
             else if (strReport == "SalesByCategory")
             {
                 LoadSalesByCategory();
+            }
+            else if (strReport == "ShiftReport")
+            {
+                cmbShiftId.DataSource = null;
+                cmbShiftId.Items.Clear();
+                cmbShiftId.Visible = false;
+                lblShiftId.Visible = false;
+                cmbSearch.SelectedIndex = 0;
             }
         }
 
@@ -613,7 +709,7 @@ namespace cypos
             {
                 string strFolder = fBrowser.SelectedPath;
                 SavePDF(rptViewer, strFolder + @"\" + strReport + ".pdf");
-            }   
+            }
         }
 
         private void btnExcel_Click(object sender, EventArgs e)
@@ -625,7 +721,7 @@ namespace cypos
             {
                 string strFolder = fBrowser.SelectedPath;
                 SaveExcel(rptViewer, strFolder + @"\" + strReport + ".xls");
-            }  
+            }
         }
 
         public void SavePDF(ReportViewer viewer, string savePath)
@@ -648,6 +744,13 @@ namespace cypos
             }
         }
 
-
+        private void cmbShiftId_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if ((sender as System.Windows.Forms.ComboBox).SelectedIndex > 0)
+                if (strReport == "ShiftReport")
+                {
+                    LoadSummaryShifts();
+                }
+        }
     }
 }

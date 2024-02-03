@@ -87,14 +87,14 @@ namespace cypos
                      if (lblModifierId.Text == "-")
                      {
                          string strSQLInsert = "INSERT INTO tbl_Modifier (name,price,price_method,item_code,print_to_kitchen,back_color,fore_color,sort_order) " +
-                                         " VALUES ('" + txtModifierName.Text + "','" + txtPrice.Text + "','" + strPriceMethod + "','" + txtItemCode.Text + "','" + isKitchenPrint + "','" + crpBackColor.Value.ToArgb() + "','" + crpForeColor.Value.ToArgb() + "','" + txtSortOrder.Text.ToString() + "')";
+                                         " VALUES (N'" + txtModifierName.Text + "','" + txtPrice.Text + "','" + strPriceMethod + "','" + txtItemCode.Text + "','" + isKitchenPrint + "','" + crpBackColor.Value.ToArgb() + "','" + crpForeColor.Value.ToArgb() + "','" + txtSortOrder.Text.ToString() + "')";
                          DataAccess.ExecuteSQL(strSQLInsert);
                          LoadModifierList("");
                          Clear();
                      }
                      else 
                      {
-                         string strSQLUpdate = "UPDATE tbl_Modifier SET name = '" + txtModifierName.Text + "'," +
+                         string strSQLUpdate = "UPDATE tbl_Modifier SET name = N'" + txtModifierName.Text + "'," +
                                 " price= '" + txtPrice.Text + "', " +
                                 " price_method= '" + strPriceMethod + "', " +
                                 " item_code= '" + txtItemCode.Text + "', " +
@@ -215,7 +215,7 @@ namespace cypos
             {
                 if (lblModifierId.Text != "-")
                 {
-                    string sqldel = "DELETE FROM tbl_Modofier WHERE id = '" + lblModifierId.Text.ToString() + "'";
+                    string sqldel = "DELETE FROM tbl_Modifier WHERE id = '" + lblModifierId.Text.ToString() + "'";
                     DataAccess.ExecuteSQL(sqldel);
                     Messages.DeletedMessage();
                     LoadModifierList("");
