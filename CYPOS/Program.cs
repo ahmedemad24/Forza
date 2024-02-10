@@ -1,11 +1,6 @@
 ﻿using cypos.Forms;
-using cypos.Updates.Forms;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
 using System.Windows.Forms;
-using System.Globalization;
 
 namespace cypos
 {
@@ -29,7 +24,8 @@ namespace cypos
             //Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("ar-AR");
             //Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("ar-AR");
 
-            Application.Run(new XtraForm1());
+            Application.Run(new FrmJobTitlesCRUD());
+            //Application.Run(new XtraForm1());
             //Application.Run(new summaryShift());
         }
     }

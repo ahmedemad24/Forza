@@ -235,6 +235,7 @@
     <Compile Include="Class\Common.cs" />
     <Compile Include="Class\ErrorLog.cs" />
     <Compile Include="Class\ForControlsDX\CMBXEdit.cs" />
+    <Compile Include="Class\JobTitlesModels\JoTitlesDTO.cs" />
     <Compile Include="Class\MessageFilter.cs" />
     <Compile Include="Class\DirectPrint.cs" />
     <Compile Include="Class\SettingConfigurationDto.cs" />
@@ -436,6 +437,12 @@
     </Compile>
     <Compile Include="Forms\frmItemsQuantity.Designer.cs">
       <DependentUpon>frmItemsQuantity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmJobTitlesCRUD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmJobTitlesCRUD.Designer.cs">
+      <DependentUpon>FrmJobTitlesCRUD.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmKitchenDisplay.cs">
       <SubType>Form</SubType>
@@ -790,6 +797,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmItemsQuantity.resx">
       <DependentUpon>frmItemsQuantity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmJobTitlesCRUD.resx">
+      <DependentUpon>FrmJobTitlesCRUD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmKitchenDisplay.resx">
       <DependentUpon>frmKitchenDisplay.cs</DependentUpon>
