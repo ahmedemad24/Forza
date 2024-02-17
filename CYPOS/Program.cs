@@ -1,4 +1,4 @@
-﻿using cypos.Forms;
+﻿using cypos.Forms.EmployeeFrms;
 using System;
 using System.Windows.Forms;
 
@@ -24,7 +24,7 @@ namespace cypos
             //Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("ar-AR");
             //Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("ar-AR");
 
-            Application.Run(new FrmJobTitlesCRUD());
+            Application.Run(new FrmEmployeesCRUD());
             //Application.Run(new XtraForm1());
             //Application.Run(new summaryShift());
         }

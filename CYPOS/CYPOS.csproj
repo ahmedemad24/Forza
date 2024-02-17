@@ -306,6 +306,12 @@
     <Compile Include="Controls\frmKeyboard.Designer.cs">
       <DependentUpon>frmKeyboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\EmployeeFrms\FrmEmployeesCRUD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EmployeeFrms\FrmEmployeesCRUD.Designer.cs">
+      <DependentUpon>FrmEmployeesCRUD.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmAbout.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -731,6 +737,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\NumPad.resx">
       <DependentUpon>NumPad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EmployeeFrms\FrmEmployeesCRUD.resx">
+      <DependentUpon>FrmEmployeesCRUD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmAbout.resx">
       <DependentUpon>frmAbout.cs</DependentUpon>
