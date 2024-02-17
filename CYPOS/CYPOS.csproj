@@ -648,7 +648,6 @@
     <Compile Include="Forms\XtraForm1.Designer.cs">
       <DependentUpon>XtraForm1.cs</DependentUpon>
     </Compile>
-    <Compile Include="obj\Debug\.NETFramework,Version=v4.6.AssemblyAttributes.cs" />
     <Compile Include="Other\frmSalesReturn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1379,6 +1378,8 @@
     <Content Include="Resources\Transfer.png" />
     <Content Include="Resources\transfer1.png" />
     <Content Include="Resources\transfere2.png" />
+    <Content Include="Updates\Create Procedure.sql" />
+    <Content Include="Updates\Test update Setting table.sql" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Debug\cs\" />

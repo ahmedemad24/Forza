@@ -79,7 +79,7 @@ namespace cypos.Forms.EmployeeFrms
                     query = $@"Insert INTO tbl_Employees 
                             (name, address, phone_number, jobTitle_id, hireDate, id_number, salary) 
                             VALUES('{name}', '{address}', '{phone_number}', {selectedJobtitleId}, 
-                                   '{hireDate}', '{idNumber}', {salary})";
+                                   '{hireDate.ToString("dd-MM-yyyy")}', '{idNumber}', {salary})";
                     DataAccess.ExecuteSQL(query);
                     XtraMessageBox.Show("Added Successfully", " Success");
                 }
