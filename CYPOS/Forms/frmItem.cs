@@ -77,7 +77,7 @@ namespace cypos
                 string strSQL = "SELECT tbl_Item.*, tbl_Category.category_name FROM tbl_Item " +
                               "LEFT JOIN tbl_Category ON tbl_Item.category_id = tbl_Category.id " +
                               "WHERE tbl_Item.parent_item_id IS NULL " +
-                              "AND  (( tbl_Item.item_name LIKE '" + value + "%' ) " +
+                              "AND  (( tbl_Item.item_name LIKE N'" + value + "%' ) " +
                               "OR ( tbl_Item.item_code LIKE '" + value + "%' ) " +
                               ") ";
                 int res;

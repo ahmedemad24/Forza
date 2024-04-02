@@ -70,9 +70,9 @@ namespace cypos
             {
                 string strSQL="SELECT tbl_Item.*, tbl_Category.category_name FROM tbl_Item " +
                               "LEFT JOIN tbl_Category ON tbl_Item.category_id = tbl_Category.id " +
-                              "WHERE (( item_name LIKE '" + value + "%' ) " +
-                              "OR ( item_code LIKE '" + value + "%' ) " +
-                              "OR (category_name = '" + value + "')) AND stock_item=1";
+                              "WHERE (( item_name LIKE N'" + value + "%' ) " +
+                              "OR ( item_code LIKE N'" + value + "%' ) " +
+                              "OR (category_name = N'" + value + "')) AND stock_item=1";
 
                 DataAccess.ExecuteSQL(strSQL);
                 DataTable dt = DataAccess.GetDataTable(strSQL);
