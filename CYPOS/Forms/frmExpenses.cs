@@ -335,7 +335,7 @@ namespace cypos
                 else
                 { 
                     string strSQL = "INSERT INTO tbl_Expense (expense_date ,reference_no ,category_id ,amount,note ,created_by,usrId) " +
-                                    " VALUES ('" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + "', '" + txtReferNo.Text + "','" + cmbCategory.SelectedValue + "', '" + txtAmount.Text + "',  " +
+                                    " VALUES ('" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + "', '" + txtReferNo.Text + "',N'" + cmbCategory.SelectedValue + "', N'" + txtAmount.Text + "',  " +
                                     "'" + txtNote.Text + "' , '" + UserInfo.UserName + "'," + UserInfo.Userid.ToString() + ")";
                     DataAccess.ExecuteSQL(strSQL);
                     //Messages.SavedMessage(); 

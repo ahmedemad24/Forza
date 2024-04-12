@@ -659,8 +659,8 @@ namespace cypos
             Button btnCategory = sender as Button;
             currentPageIndex = 1;
 
+            searchItemTxtbx.ResetText();
             dtAllItems = GetItemList(btnCategory.Text.ToString(), currentPageIndex, "sort_number, item_name");
-
             //DataTable dtNavItems = dtAllItems.AsEnumerable().CopyToDataTable();
             //LoadItems(dtNavItems);
             lblCategory.Text = btnCategory.Text;
@@ -3572,6 +3572,15 @@ namespace cypos
                 DataAccess.ExecuteSQL(INSERT_UPDATED_NOTIFICATION_DETAIL);
             }
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            currentPageIndex = 1;
+            dtAllItems = GetItemList(searchItemTxtbx.Text, currentPageIndex, "sort_number, item_name");
+            lblCategory.Text = "All Categories";
+            btnPrevious.Enabled = false;
+        }
+
         private void btnKbDiscount_Click(object sender, EventArgs e)
         {
             frmCurrencyboard frmCurrencyboard = new frmCurrencyboard(txtDiscountRate);
