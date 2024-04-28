@@ -237,6 +237,18 @@ namespace cypos
             }
         }
 
+        public static string DefualtOrderTypeDesc
+        {
+            get
+            {
+                string strSQL = $"SELECT TOP 1 {(UserInfo.IsArabicLangSelected? "LabelAr" : "LabelEn")} FROM tbl_Settings join tbl_OrderTypes t on default_order_type=t.Id and company_type_id={(int)Company.CompanyType}";
+                DataAccess.ExecuteSQL(strSQL);
+                DataTable dtSettings = DataAccess.GetDataTable(strSQL);
+                string iValue = dtSettings.Rows[0][$"{(UserInfo.IsArabicLangSelected ? "LabelAr" : "LabelEn")}"].ToString();
+                return iValue;
+            }
+        }
+
         public static bool EnableServiceCharge
         {
             get
@@ -547,6 +559,49 @@ namespace cypos
                 return strLogo;
             }
         }
+        public static CompanyTypeEnum CompanyType
+        {
+            get
+            {
+                var CompanyType = DataAccess.ExecuteScalarSQL("select isNull(company_type_id ,0) from tbl_Company");
+                return (CompanyTypeEnum)CompanyType;
+            }
+        }
+
+        public static List<OrderType> OrderTypes
+        {
+            get
+            {
+                var orderTypes = DataAccess.GetDataTable($"select * from tbl_OrderTypes where company_type_id={(int)CompanyType}");
+                return orderTypes.AsEnumerable().Select(a => new OrderType
+                {
+                    Id = a.Field<int>("id"),
+                    Name = a.Field<string>("name"),
+                    LabelEn = a.Field<string>("LabelEn"),
+                    LabelAr = a.Field<string>("LabelAr"),
+                    company_type_id = a.Field<int>("company_type_id"),
+                    SVGLogo = a.Field<string>("SVGLogo")
+                }).ToList();
+            }
+        }
+
+
+    }
+    public class OrderType
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string LabelEn { get; set; }
+        public string LabelAr { get; set; }
+        public int company_type_id { get; set; }
+        public string SVGLogo { get; set; }
+    }
+
+    public enum CompanyTypeEnum
+    {
+        Restaurant = 1,
+        MaintenanceCenter,
+        Mart
     }
 
     public static class Miscellaneous

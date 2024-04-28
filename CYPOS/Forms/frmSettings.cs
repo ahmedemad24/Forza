@@ -77,6 +77,8 @@ namespace cypos
 
         private void frmSettings_Load(object sender, EventArgs e)
         {
+            cmbOrderType.Items.AddRange(Company.OrderTypes.Select(a => a.LabelEn).ToArray());
+
             if (UserInfo.UserType != "Admin")
             {
                 MessageBox.Show("لا تملك صلاحية للدخول علي هذه الشاشة");
@@ -84,11 +86,12 @@ namespace cypos
             }
             try
             {
-                string strSQL = "SELECT TOP 1 * FROM tbl_Settings";
+                string strSQL = $"SELECT TOP 1 *,(select {(UserInfo.IsArabicLangSelected? "LabelAr" : "LabelEn")} from tbl_OrderTypes where company_type_id={(int)Company.CompanyType} and id=default_order_type) DefaultOrderType FROM tbl_Settings";
                 DataAccess.ExecuteSQL(strSQL);
                 DataTable dtSetting= DataAccess.GetDataTable(strSQL);
 
-                cmbOrderType.SelectedIndex =int.Parse(dtSetting.Rows[0]["default_order_type"].ToString())-1;
+                //cmbOrderType.SelectedIndex =int.Parse(dtSetting.Rows[0]["default_order_type"].ToString())-1;
+                cmbOrderType.SelectedItem =dtSetting.Rows[0]["DefaultOrderType"].ToString();
                 cbxCustomerAfterDo.Checked = bool.Parse(dtSetting.Rows[0]["customer_after_do"].ToString());
                 cbxCustomerAfterPo.Checked = bool.Parse(dtSetting.Rows[0]["customer_after_po"].ToString());
 
@@ -138,7 +141,7 @@ namespace cypos
                 cbxPrintKotOnHold.Checked = bool.Parse(dtSetting.Rows[0]["print_kot_after_hold"].ToString());
                 cbxShowOtAfterBill.Checked = bool.Parse(dtSetting.Rows[0]["show_ot_after"].ToString());
 
-                cbxPreviewKot.Checked = bool.Parse(dtSetting.Rows[0]["kot_view_before_print"].ToString());   
+                cbxPreviewKot.Checked = bool.Parse(dtSetting.Rows[0]["kot_view_before_print"].ToString());
             }
             catch (Exception ex)
             {
@@ -264,7 +267,7 @@ namespace cypos
         {
             try
             {
-                int orderType = cmbOrderType.SelectedIndex + 1;
+                string orderType = cmbOrderType.SelectedItem.ToString();
                 //int autoInvoiceNo = int.Parse(txtInvoiceStartingNo.Text) - 1;
 
                 string strSQLUpdate = "UPDATE tbl_Settings SET items_per_page= '" + txtItemPerPage.Text + "'," +
@@ -275,7 +278,7 @@ namespace cypos
                                       "ask_waiter = '" + Convert.ToBoolean(cbxEnableWaiter.CheckState) + "'," +
                                       "delete_hold_days = '" + txtInvoiceDeleteDays.Text + "'," +
                                       "default_discount_rate = '" + txtDefaultDiscRate.Text + "'," +
-                                      "default_order_type = '" + orderType + "'," +
+                                      $"default_order_type = (select id from tbl_OrderTypes where company_type_id={(int)Company.CompanyType} and LabelEn='{orderType}')," +
                                       "show_logo = '" + Convert.ToBoolean(cbxShowLogo.CheckState) + "'," +
                                       "enable_sc = '" + Convert.ToBoolean(cbxEnableServiceCharge.CheckState) + "'," +
                                       "sc_rate = '" + txtScRate.Text + "'," +

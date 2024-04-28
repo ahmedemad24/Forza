@@ -953,9 +953,9 @@ namespace cypos
                 strOtId = Settings.DefaultOrderType.ToString();
             }
 
-            if (strOtId == "1")
+            btnSelectedOT.Text = "Order Type" + Environment.NewLine + Settings.DefualtOrderTypeDesc;
+            if (Company.CompanyType == CompanyTypeEnum.Restaurant && strOtId == "1")
             {
-                btnSelectedOT.Text = "Order Type" + Environment.NewLine + "Dine In";
                 pnlTableNo.Visible = true;
                 pnlWaiter.Visible = true;
 
@@ -971,35 +971,26 @@ namespace cypos
                     }
                 }
             }
-            else if (strOtId == "2")
+            else
             {
-                btnSelectedOT.Text = "Order Type" + Environment.NewLine + "Take Away";
                 pnlTableNo.Visible = false;
                 pnlWaiter.Visible = false;
-                transferBtn.Visible = false;
                 mergeTblBtn.Visible = false;
             }
-            else if (strOtId == "3")
-            {
-                btnSelectedOT.Text = "Order Type" + Environment.NewLine + "Delivery Order";
-                pnlTableNo.Visible = false;
-                pnlWaiter.Visible = false;
-                mergeTblBtn.Visible = false;
 
+            if (strOtId == "2" || strOtId == "4")
+            {
+                transferBtn.Visible = false;
+            }
+            else if (strOtId == "3" && Company.CompanyType == CompanyTypeEnum.Restaurant)
+            {
                 string query = "select r.ServiceAmount from tbl_Customer c join tbl_region r on c.RegionId=r.RegionId where c.id=" + dtHeader.Rows[0]["customer_id"].ToString();
                 DataTable Fees = DataAccess.GetDataTable(query);
                 DeliveryFees.Visible = true;
                 DeliveryFees.Text = decimal.Parse(Fees.Rows[0][0].ToString()).ToString("N2");
                 //lblTotalPayable.Text = (decimal.Parse(lblTotalPayable.Text) + decimal.Parse(Fees.Rows[0][0].ToString())).ToString("N2");
             }
-            else if (strOtId == "4")
-            {
-                btnSelectedOT.Text = "Order Type" + Environment.NewLine + "Pickup Order";
-                pnlTableNo.Visible = false;
-                pnlWaiter.Visible = false;
-                transferBtn.Visible = false;
-                mergeTblBtn.Visible = false;
-            }
+
             lblOrderTypeId.Text = strOtId.ToString();
 
             lblTableId.Text = dtHeader.Rows[0]["table_id"].ToString();
@@ -2164,7 +2155,7 @@ namespace cypos
             DialogResult dialogResult = MessageBox.Show("Do you want end your shift?", "End Shift", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.Yes)
             {
-                frmEndShift frmEndShift = new frmEndShift();
+                ShiftEndFrm frmEndShift = new ShiftEndFrm();
                 string query = "select start_ShiftDate from tbl_UserShifts where id= " + UserInfo.UserShiftCode;
                 //string query = "select convert(datetime,start_ShiftDate)+start_ShiftTime as datetime from tbl_UserShifts where id= " + UserInfo.UserShiftCode;
                 DataTable dt = DataAccess.GetDataTable(query);
@@ -2813,7 +2804,7 @@ namespace cypos
         #region Order Type
         private void btnOrderType_Click(object sender, EventArgs e)
         {
-            frmOrderType frmOrderType = new frmOrderType(this);
+            frmOrderTypesPopup frmOrderType = new frmOrderTypesPopup(this);
             frmOrderType.ShowDialog();
         }
 
@@ -2823,7 +2814,7 @@ namespace cypos
             {
                 lblOrderTypeId.Text = typeId.ToString();
                 btnSelectedOT.Text = "Order Type" + Environment.NewLine + strType;
-                if (typeId == 1)
+                if (typeId == 1 && Company.CompanyType == CompanyTypeEnum.Restaurant)
                 {
                     btnTable.Enabled = true;
                     pnlTableNo.Visible = true;
@@ -2852,7 +2843,7 @@ namespace cypos
                     //btnSelectedOT.Text = "Order Type";
                 }
 
-                if (typeId == 3)
+                if (typeId == 3 && Company.CompanyType == CompanyTypeEnum.Restaurant)
                 {
                     string query = "select r.ServiceAmount from tbl_Customer c join tbl_region r on c.RegionId=r.RegionId where c.id=" + lblCustomerId.Text;
                     DataTable dt = DataAccess.GetDataTable(query);
@@ -3010,9 +3001,10 @@ namespace cypos
 
             int defaultOt = Settings.DefaultOrderType;
             lblOrderTypeId.Text = Settings.DefaultOrderType.ToString();
-            if (defaultOt == 1)
+            btnSelectedOT.Text = Settings.DefualtOrderTypeDesc;
+            if (defaultOt == 1 && Company.CompanyType == CompanyTypeEnum.Restaurant)
             {
-                btnSelectedOT.Text = "Order Type" + Environment.NewLine + "Dine In";
+                //btnSelectedOT.Text = "Order Type" + Environment.NewLine + "Dine In";
                 btnTable.Enabled = true;
                 pnlTableNo.Visible = true;
                 pnlWaiter.Visible = true;
@@ -3038,27 +3030,27 @@ namespace cypos
                     pnlWaiter.Visible = false;
                 }
             }
-            else if (defaultOt == 2)
-            {
-                btnSelectedOT.Text = "Order Type" + Environment.NewLine + "Take Away";
-                btnTable.Enabled = false;
-                pnlTableNo.Visible = false;
-                pnlWaiter.Visible = false;
-            }
-            else if (defaultOt == 3)
-            {
-                btnSelectedOT.Text = "Order Type" + Environment.NewLine + "Delivery Order";
-                btnTable.Enabled = false;
-                pnlTableNo.Visible = false;
-                pnlWaiter.Visible = false;
-            }
-            else if (defaultOt == 4)
-            {
-                btnSelectedOT.Text = "Order Type" + Environment.NewLine + "Pickup Order";
-                btnTable.Enabled = false;
-                pnlTableNo.Visible = false;
-                pnlWaiter.Visible = false;
-            }
+            //else if (defaultOt == 2)
+            //{
+            //    btnSelectedOT.Text = "Order Type" + Environment.NewLine + "Take Away";
+            //    btnTable.Enabled = false;
+            //    pnlTableNo.Visible = false;
+            //    pnlWaiter.Visible = false;
+            //}
+            //else if (defaultOt == 3)
+            //{
+            //    btnSelectedOT.Text = "Order Type" + Environment.NewLine + "Delivery Order";
+            //    btnTable.Enabled = false;
+            //    pnlTableNo.Visible = false;
+            //    pnlWaiter.Visible = false;
+            //}
+            //else if (defaultOt == 4)
+            //{
+            //    btnSelectedOT.Text = "Order Type" + Environment.NewLine + "Pickup Order";
+            //    btnTable.Enabled = false;
+            //    pnlTableNo.Visible = false;
+            //    pnlWaiter.Visible = false;
+            //}
 
             if (TaxValue.TaxType == "0")
             {

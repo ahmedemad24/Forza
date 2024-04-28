@@ -43,13 +43,14 @@ namespace cypos.Report
             floPanel.Controls.Clear();
             try
             {
-                string strSQLHeader = "SELECT tbl_TempHeader.id, tbl_TempHeader.order_type, tbl_TempHeader.invoice_date," +
+                string strSQLHeader = $"SELECT tbl_TempHeader.id, tbl_TempHeader.order_type,{(UserInfo.IsArabicLangSelected? "Type.LabelAr" : "Type.LabelEn")} OrdertypeLabel, tbl_TempHeader.invoice_date," +
                                       "tbl_TempHeader.invoice_time, tbl_TempHeader.kot_no, tbl_Tables.table_name, " +
                                       "tbl_TableLocation.location_name, tbl_TempHeader.no_of_guests, tbl_TempHeader.user_name," +
                                       "tbl_TempHeader.note,tbl_TempHeader.status,tbl_User.name AS waiter_name FROM tbl_TempHeader " +
                                       "LEFT OUTER JOIN tbl_Tables ON tbl_TempHeader.table_id = tbl_Tables.id " +
                                       "LEFT OUTER JOIN tbl_TableLocation ON tbl_Tables.location_id = tbl_TableLocation.Id " +
-                                      "LEFT OUTER JOIN tbl_User ON tbl_TempHeader.waiter_id = tbl_User.id";
+                                      "LEFT OUTER JOIN tbl_User ON tbl_TempHeader.waiter_id = tbl_User.id" +
+                                      $"LEFT JOIN tbl_OrderTypes TYPE ON TYPE.company_type_id={(int)Company.CompanyType} and type.Id = order_type";
                 DataAccess.ExecuteSQL(strSQLHeader);
                 DataTable dtHeader = DataAccess.GetDataTable(strSQLHeader);
 
@@ -150,26 +151,16 @@ namespace cypos.Report
                     lblOTRight.Parent = pnlOrderType;
 
                     string strOtId = dtHeader.Rows[i]["order_type"].ToString();
+                    string OrdertypeLabel = dtHeader.Rows[i]["OrdertypeLabel"].ToString();
                     string strOrderType=string.Empty;
 
-                    if (strOtId == "1")
+                    strOrderType = OrdertypeLabel;
+                    if (strOtId == "1" && Company.CompanyType == CompanyTypeEnum.Restaurant)
                     {
-                        strOrderType = "Dine In";
                         pnlWaiter.Visible = true;
                         pnlTableInfo.Visible = true;
                     }
-                    else if (strOtId == "2")
-                    {
-                        strOrderType = "Take Away";
-                    }
-                    else if (strOtId == "3")
-                    {
-                        strOrderType = "Delivery Order";
-                    }
-                    else if (strOtId == "4")
-                    {
-                        strOrderType = "Pickup Order";
-                    }
+                    
                     lblOTRight.Text = strOrderType;
 
                     Panel pnlKotNo = new Panel();

@@ -296,7 +296,7 @@
             // 
             this.lblTotalPages.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalPages.Name = "lblTotalPages";
-            this.lblTotalPages.Size = new System.Drawing.Size(21, 43);
+            this.lblTotalPages.Size = new System.Drawing.Size(30, 43);
             this.lblTotalPages.Text = "10";
             this.lblTotalPages.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -304,7 +304,7 @@
             // 
             this.toolStripLabel2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(18, 43);
+            this.toolStripLabel2.Size = new System.Drawing.Size(24, 43);
             this.toolStripLabel2.Text = "of";
             this.toolStripLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -312,7 +312,7 @@
             // 
             this.lblCurrentPage.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCurrentPage.Name = "lblCurrentPage";
-            this.lblCurrentPage.Size = new System.Drawing.Size(14, 43);
+            this.lblCurrentPage.Size = new System.Drawing.Size(20, 43);
             this.lblCurrentPage.Text = "1";
             this.lblCurrentPage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -320,7 +320,7 @@
             // 
             this.toolStripLabel1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(35, 43);
+            this.toolStripLabel1.Size = new System.Drawing.Size(46, 43);
             this.toolStripLabel1.Text = "Page";
             this.toolStripLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -536,7 +536,7 @@
             this.clmPrice.MinimumWidth = 8;
             this.clmPrice.Name = "clmPrice";
             this.clmPrice.ReadOnly = true;
-            this.clmPrice.Width = 56;
+            this.clmPrice.Width = 69;
             // 
             // clmQty
             // 
@@ -546,7 +546,7 @@
             this.clmQty.MinimumWidth = 8;
             this.clmQty.Name = "clmQty";
             this.clmQty.ReadOnly = true;
-            this.clmQty.Width = 48;
+            this.clmQty.Width = 59;
             // 
             // clmAmount
             // 
@@ -556,7 +556,7 @@
             this.clmAmount.MinimumWidth = 8;
             this.clmAmount.Name = "clmAmount";
             this.clmAmount.ReadOnly = true;
-            this.clmAmount.Width = 68;
+            this.clmAmount.Width = 85;
             // 
             // clmDiscountRate
             // 
@@ -806,7 +806,7 @@
             this.DeliveryFees.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DeliveryFees.Location = new System.Drawing.Point(147, 120);
             this.DeliveryFees.Name = "DeliveryFees";
-            this.DeliveryFees.Size = new System.Drawing.Size(32, 16);
+            this.DeliveryFees.Size = new System.Drawing.Size(42, 21);
             this.DeliveryFees.TabIndex = 203;
             this.DeliveryFees.Text = "0.00";
             this.DeliveryFees.Visible = false;
@@ -818,7 +818,7 @@
             this.label6.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(11, 120);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(88, 16);
+            this.label6.Size = new System.Drawing.Size(116, 21);
             this.label6.TabIndex = 202;
             this.label6.Text = "Delivery Fees:";
             // 
@@ -827,7 +827,7 @@
             this.lblScRate.AutoSize = true;
             this.lblScRate.Location = new System.Drawing.Point(398, 85);
             this.lblScRate.Name = "lblScRate";
-            this.lblScRate.Size = new System.Drawing.Size(13, 13);
+            this.lblScRate.Size = new System.Drawing.Size(16, 17);
             this.lblScRate.TabIndex = 201;
             this.lblScRate.Text = "0";
             this.lblScRate.Visible = false;
@@ -838,7 +838,7 @@
             this.lblServiceCharge.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblServiceCharge.Location = new System.Drawing.Point(262, 83);
             this.lblServiceCharge.Name = "lblServiceCharge";
-            this.lblServiceCharge.Size = new System.Drawing.Size(134, 16);
+            this.lblServiceCharge.Size = new System.Drawing.Size(174, 21);
             this.lblServiceCharge.TabIndex = 200;
             this.lblServiceCharge.Text = "Service Charge (10%)";
             // 
@@ -848,7 +848,7 @@
             this.lblScAmount.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScAmount.Location = new System.Drawing.Point(303, 100);
             this.lblScAmount.Name = "lblScAmount";
-            this.lblScAmount.Size = new System.Drawing.Size(32, 16);
+            this.lblScAmount.Size = new System.Drawing.Size(42, 21);
             this.lblScAmount.TabIndex = 199;
             this.lblScAmount.Text = "0.00";
             // 
@@ -871,7 +871,7 @@
             this.lblTax2Rate.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTax2Rate.Location = new System.Drawing.Point(95, 100);
             this.lblTax2Rate.Name = "lblTax2Rate";
-            this.lblTax2Rate.Size = new System.Drawing.Size(26, 16);
+            this.lblTax2Rate.Size = new System.Drawing.Size(36, 21);
             this.lblTax2Rate.TabIndex = 167;
             this.lblTax2Rate.Text = "2%";
             // 
@@ -881,7 +881,7 @@
             this.lblTax1Rate.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTax1Rate.Location = new System.Drawing.Point(95, 77);
             this.lblTax1Rate.Name = "lblTax1Rate";
-            this.lblTax1Rate.Size = new System.Drawing.Size(33, 16);
+            this.lblTax1Rate.Size = new System.Drawing.Size(45, 21);
             this.lblTax1Rate.TabIndex = 166;
             this.lblTax1Rate.Text = "15%";
             // 
@@ -891,7 +891,7 @@
             this.lblTax2Name.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTax2Name.Location = new System.Drawing.Point(11, 99);
             this.lblTax2Name.Name = "lblTax2Name";
-            this.lblTax2Name.Size = new System.Drawing.Size(81, 16);
+            this.lblTax2Name.Size = new System.Drawing.Size(105, 21);
             this.lblTax2Name.TabIndex = 165;
             this.lblTax2Name.Text = "Tax 2 Name:";
             // 
@@ -901,7 +901,7 @@
             this.lblTotalTax2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalTax2.Location = new System.Drawing.Point(147, 99);
             this.lblTotalTax2.Name = "lblTotalTax2";
-            this.lblTotalTax2.Size = new System.Drawing.Size(32, 16);
+            this.lblTotalTax2.Size = new System.Drawing.Size(42, 21);
             this.lblTotalTax2.TabIndex = 163;
             this.lblTotalTax2.Text = "0.00";
             // 
@@ -912,7 +912,7 @@
             this.txtDiscountRate.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDiscountRate.Location = new System.Drawing.Point(273, 13);
             this.txtDiscountRate.Name = "txtDiscountRate";
-            this.txtDiscountRate.Size = new System.Drawing.Size(79, 23);
+            this.txtDiscountRate.Size = new System.Drawing.Size(79, 27);
             this.txtDiscountRate.TabIndex = 2;
             this.txtDiscountRate.Text = "0";
             this.txtDiscountRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -925,7 +925,7 @@
             this.lblOverallDiscount.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOverallDiscount.Location = new System.Drawing.Point(305, 65);
             this.lblOverallDiscount.Name = "lblOverallDiscount";
-            this.lblOverallDiscount.Size = new System.Drawing.Size(14, 14);
+            this.lblOverallDiscount.Size = new System.Drawing.Size(16, 18);
             this.lblOverallDiscount.TabIndex = 161;
             this.lblOverallDiscount.Text = "0";
             this.lblOverallDiscount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -936,7 +936,7 @@
             this.label3.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(265, 44);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(94, 14);
+            this.label3.Size = new System.Drawing.Size(112, 18);
             this.label3.TabIndex = 160;
             this.label3.Text = "Overall Discount";
             // 
@@ -946,7 +946,7 @@
             this.lblSubtotal.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSubtotal.Location = new System.Drawing.Point(147, 55);
             this.lblSubtotal.Name = "lblSubtotal";
-            this.lblSubtotal.Size = new System.Drawing.Size(32, 16);
+            this.lblSubtotal.Size = new System.Drawing.Size(42, 21);
             this.lblSubtotal.TabIndex = 141;
             this.lblSubtotal.Text = "0.00";
             // 
@@ -956,7 +956,7 @@
             this.label10.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(11, 55);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(67, 16);
+            this.label10.Size = new System.Drawing.Size(86, 21);
             this.label10.TabIndex = 140;
             this.label10.Text = "Sub Total:";
             // 
@@ -966,7 +966,7 @@
             this.label29.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label29.Location = new System.Drawing.Point(11, 9);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(41, 16);
+            this.label29.Size = new System.Drawing.Size(54, 21);
             this.label29.TabIndex = 123;
             this.label29.Text = "Total:";
             // 
@@ -976,7 +976,7 @@
             this.lblTotal.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotal.Location = new System.Drawing.Point(147, 9);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(32, 16);
+            this.lblTotal.Size = new System.Drawing.Size(42, 21);
             this.lblTotal.TabIndex = 133;
             this.lblTotal.Text = "0.00";
             // 
@@ -986,7 +986,7 @@
             this.lblTax1Name.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTax1Name.Location = new System.Drawing.Point(11, 77);
             this.lblTax1Name.Name = "lblTax1Name";
-            this.lblTax1Name.Size = new System.Drawing.Size(81, 16);
+            this.lblTax1Name.Size = new System.Drawing.Size(105, 21);
             this.lblTax1Name.TabIndex = 131;
             this.lblTax1Name.Text = "Tax 1 Name:";
             // 
@@ -996,7 +996,7 @@
             this.label28.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label28.Location = new System.Drawing.Point(11, 32);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(87, 16);
+            this.label28.Size = new System.Drawing.Size(116, 21);
             this.label28.TabIndex = 132;
             this.label28.Text = "Line Discount:";
             // 
@@ -1006,7 +1006,7 @@
             this.lblTotalTax1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalTax1.Location = new System.Drawing.Point(147, 77);
             this.lblTotalTax1.Name = "lblTotalTax1";
-            this.lblTotalTax1.Size = new System.Drawing.Size(32, 16);
+            this.lblTotalTax1.Size = new System.Drawing.Size(42, 21);
             this.lblTotalTax1.TabIndex = 49;
             this.lblTotalTax1.Text = "0.00";
             // 
@@ -1016,7 +1016,7 @@
             this.lblTotalDiscount.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalDiscount.Location = new System.Drawing.Point(147, 32);
             this.lblTotalDiscount.Name = "lblTotalDiscount";
-            this.lblTotalDiscount.Size = new System.Drawing.Size(32, 16);
+            this.lblTotalDiscount.Size = new System.Drawing.Size(42, 21);
             this.lblTotalDiscount.TabIndex = 51;
             this.lblTotalDiscount.Text = "0.00";
             // 
@@ -1830,7 +1830,7 @@
             this.tssTotalItems.BackColor = System.Drawing.Color.Transparent;
             this.tssTotalItems.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tssTotalItems.Name = "tssTotalItems";
-            this.tssTotalItems.Size = new System.Drawing.Size(101, 23);
+            this.tssTotalItems.Size = new System.Drawing.Size(131, 22);
             this.tssTotalItems.Text = "Total Item(s) : 0 ";
             // 
             // tssProduct
@@ -1838,7 +1838,7 @@
             this.tssProduct.BackColor = System.Drawing.Color.Transparent;
             this.tssProduct.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tssProduct.Name = "tssProduct";
-            this.tssProduct.Size = new System.Drawing.Size(1264, 23);
+            this.tssProduct.Size = new System.Drawing.Size(1234, 22);
             this.tssProduct.Spring = true;
             this.tssProduct.Text = "LinkPOS Version 2.0";
             this.tssProduct.TextAlign = System.Drawing.ContentAlignment.MiddleRight;

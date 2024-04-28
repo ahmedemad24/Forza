@@ -49,9 +49,26 @@ namespace cypos
             dgvItems.RowHeadersDefaultCellStyle.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
             dgvItems.DefaultCellStyle.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular);
 
+            var orderTypes = Company.OrderTypes;
+            if (orderTypes.FirstOrDefault(a => a.Id == 1) != null)
+            {
+                tabPage1.Text = UserInfo.IsArabicLangSelected ? orderTypes.FirstOrDefault(a => a.Id == 1).LabelAr : orderTypes.FirstOrDefault(a => a.Id == 1).LabelEn;
+                tabPage1.Tag = 1;
+            }
+            else
+            {
+                tabPage1.Hide();
+                tbMain.TabPages.Remove(tabPage1);
+                //floDineIn.Visible = false;
+            }
+            if (orderTypes.FirstOrDefault(a => a.Id == 2) != null)
+                tabPage2.Text = UserInfo.IsArabicLangSelected ? orderTypes.FirstOrDefault(a => a.Id == 2).LabelAr : orderTypes.FirstOrDefault(a => a.Id == 1).LabelEn;
+            if (orderTypes.FirstOrDefault(a => a.Id == 3) != null)
+                tabPage3.Text = UserInfo.IsArabicLangSelected ? orderTypes.FirstOrDefault(a => a.Id == 3).LabelAr : orderTypes.FirstOrDefault(a => a.Id == 1).LabelEn;
+            if (orderTypes.FirstOrDefault(a => a.Id == 4) != null)
+                tabPage4.Text = UserInfo.IsArabicLangSelected ? orderTypes.FirstOrDefault(a => a.Id == 4).LabelAr : orderTypes.FirstOrDefault(a => a.Id == 1).LabelEn;
 
-
-            LoadOrderList();
+            LoadOrderList(int.Parse(tbMain.SelectedTab.Name.Replace("tabPage", "")));
 
             lblOrderType.Text = "";
             lblTable.Text = "";
@@ -110,7 +127,7 @@ namespace cypos
 
         private void tbMain_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tbMain.SelectedIndex == 0)//Dine In
+            if (((TabControl)sender).SelectedTab.Name.Replace("tabPage", "") == "1")//Dine In
             {
                 floDineIn.Controls.Clear();
                 LoadOrderList(1);
@@ -119,7 +136,7 @@ namespace cypos
                 filterByUser.Visible = true;
                 rejectBtn.Visible = false;
             }
-            else if (tbMain.SelectedIndex == 1)//Take Away
+            else if (((TabControl)sender).SelectedTab.Name.Replace("tabPage", "") == "2")//Take Away
             {
                 floTakeAway.Controls.Clear();
                 LoadOrderList(2);
@@ -128,7 +145,7 @@ namespace cypos
                 filterByUser.Visible = true;
                 rejectBtn.Visible = false;
             }
-            else if (tbMain.SelectedIndex == 2)//Delivery Order
+            else if (((TabControl)sender).SelectedTab.Name.Replace("tabPage", "") == "3")//Delivery Order
             {
                 floDeliveryOrder.Controls.Clear();
                 LoadOrderList(3);
@@ -137,7 +154,7 @@ namespace cypos
                 filterByUser.Visible = true;
                 rejectBtn.Visible = false;
             }
-            else if (tbMain.SelectedIndex == 3)//Pickup order
+            else if (((TabControl)sender).SelectedTab.Name.Replace("tabPage", "") == "4")//Pickup order
             {
                 floPickupOrder.Controls.Clear();
                 LoadOrderList(4);
@@ -146,7 +163,7 @@ namespace cypos
                 filterByUser.Visible = true;
                 rejectBtn.Visible = false;
             }
-            else if (tbMain.SelectedTab == tabPage5)
+            else if (((TabControl)sender).SelectedTab == tabPage5)
             {
                 btnPrintKot.Visible = false;
                 PrntOnlyBtn.Visible = false;
@@ -246,22 +263,26 @@ namespace cypos
                     if (orderType == 1)
                     {
                         floDineIn.Controls.Add(btnInvoice);
-                        tbMain.SelectedIndex = 0;
+                        if(tbMain.SelectedTab != tabPage1)
+                            tbMain.SelectedTab = tabPage1;
                     }
                     else if (orderType == 2)
                     {
                         floTakeAway.Controls.Add(btnInvoice);
-                        tbMain.SelectedIndex = 1;
+                        if (tbMain.SelectedTab != tabPage2)
+                            tbMain.SelectedTab = tabPage2;
                     }
                     else if (orderType == 3)
                     {
                         floDeliveryOrder.Controls.Add(btnInvoice);
-                        tbMain.SelectedIndex = 2;
+                        if (tbMain.SelectedTab != tabPage3)
+                            tbMain.SelectedTab = tabPage3;
                     }
                     else if (orderType == 4)
                     {
                         floPickupOrder.Controls.Add(btnInvoice);
-                        tbMain.SelectedIndex = 3;
+                        if (tbMain.SelectedTab != tabPage4)
+                            tbMain.SelectedTab = tabPage4;
                     }
                     currentImage++;
                 }
@@ -362,14 +383,15 @@ namespace cypos
         {
             Button btnInvoice = sender as Button;
 
-            string strSQL = "SELECT tbl_TempHeader.id, tbl_TempHeader.invoice_date,tbl_TempHeader.invoice_time, tbl_TempHeader.order_type," +
-                            "tbl_TempHeader.table_id,tbl_Tables.table_name, tbl_TempHeader.no_of_guests,tbl_TempHeader.waiter_id,"+
-                            "tbl_User.name AS waiter_name,tbl_TempHeader.user_name,tbl_TempHeader.payment_amount,tbl_TempDetail.item_code," +
-                            "tbl_TempDetail.item_name, tbl_TempDetail.qty,tbl_TempDetail.total,tbl_TempDetail.show_kitchen,tbl_TempDetail.print_kot," +
-                            "tbl_TempDetail.kot_qty FROM tbl_TempDetail INNER JOIN tbl_TempHeader ON tbl_TempDetail.header_id = tbl_TempHeader.id " +
-                            "LEFT JOIN tbl_Tables ON tbl_TempHeader.table_id = tbl_Tables.id " +
-                            "LEFT JOIN tbl_User ON tbl_TempHeader.waiter_id = tbl_User.id " +
-                            "WHERE tbl_TempHeader.id='" + btnInvoice.Tag.ToString() + "'";
+            string strSQL = $@"SELECT tbl_TempHeader.id, tbl_TempHeader.invoice_date,tbl_TempHeader.invoice_time,{(UserInfo.IsArabicLangSelected? "Type.LabelAr" : "Type.LabelEn")} OrdertypeLabel, tbl_TempHeader.order_type,
+                            tbl_TempHeader.table_id,tbl_Tables.table_name, tbl_TempHeader.no_of_guests,tbl_TempHeader.waiter_id,
+                            tbl_User.name AS waiter_name,tbl_TempHeader.user_name,tbl_TempHeader.payment_amount,tbl_TempDetail.item_code,
+                            tbl_TempDetail.item_name, tbl_TempDetail.qty,tbl_TempDetail.total,tbl_TempDetail.show_kitchen,tbl_TempDetail.print_kot,
+                            tbl_TempDetail.kot_qty FROM tbl_TempDetail INNER JOIN tbl_TempHeader ON tbl_TempDetail.header_id = tbl_TempHeader.id 
+                            LEFT JOIN tbl_Tables ON tbl_TempHeader.table_id = tbl_Tables.id 
+                            LEFT JOIN tbl_OrderTypes TYPE ON TYPE.company_type_id={(int)Company.CompanyType} and type.Id = tbl_TempHeader.order_type
+                            LEFT JOIN tbl_User ON tbl_TempHeader.waiter_id = tbl_User.id 
+                            WHERE tbl_TempHeader.id='" + btnInvoice.Tag.ToString() + "'";
 
             DataAccess.ExecuteSQL(strSQL);
             DataTable dt = DataAccess.GetDataTable(strSQL);
@@ -382,22 +404,8 @@ namespace cypos
                 lblHoldId.Text = dr["id"].ToString();
                 int iOrderType = int.Parse(dr["order_type"].ToString());
                 string strOrderType=string.Empty;
-                if (iOrderType == 1)
-                {
-                    strOrderType = "Dine In";
-                }
-                else if (iOrderType == 2)
-                {
-                    strOrderType = "Take Away";
-                }
-                else if (iOrderType == 3)
-                {
-                    strOrderType = "Delivery order";
-                }
-                else if (iOrderType == 4)
-                {
-                    strOrderType = "Pickup Order";
-                }
+                strOrderType = dr["OrdertypeLabel"].ToString();
+                
                 lblOrderTypeId.Text = dr["order_type"].ToString();
                 lblOrderType.Text = strOrderType.ToString();
                 lblTableId.Text = dr["table_id"].ToString();
@@ -423,11 +431,13 @@ namespace cypos
             Button btnInvoice = sender as Button;
             int headerID = int.Parse(btnInvoice.Tag.ToString());
 
-            string selectNotificationQuery = $@"select td.*, td.id detail_id, th.id Nheader_id,  th.order_type, t.id table_id, t.table_NO, t.table_name 
+            string selectNotificationQuery = $@"select td.*, td.id detail_id, th.id Nheader_id,{(UserInfo.IsArabicLangSelected ? "Type.LabelAr" : "Type.LabelEn")} OrdertypeLabel,  th.order_type, t.id table_id, t.table_NO, t.table_name 
                                                 , th.no_of_guests, th.waiter_id, u.name waiter_name, u.user_name, th.customer_id, th.payment_amount    
                                                 from Notification_TempDetail td
 	                                            join Notification_TempHeader th on td.header_id = th.id
-	                                            LEFT JOIN tbl_Tables t ON th.table_id = t.id
+                                                LEFT JOIN tbl_OrderTypes TYPE ON TYPE.company_type_id ={(int)Company.CompanyType}
+                                                    and type.Id = th.order_type
+                                                LEFT JOIN tbl_Tables t ON th.table_id = t.id
 	                                            LEFT JOIN tbl_Customer c ON th.customer_id = c.id
 	                                            LEFT JOIN tbl_User u ON th.waiter_id = u.id 
                                                 WHERE th.id = {headerID}";
@@ -439,17 +449,9 @@ namespace cypos
             {
                 DataRow dr = dt.Rows[i];
                 lblHoldId.Text = dr["Nheader_id"].ToString();
-                int iOrderType = int.Parse(dr["order_type"].ToString());
                 string strOrderType=string.Empty;
-                if (iOrderType == 1)
-                {
-                    strOrderType = "Dine In";
-                }
-                else if (iOrderType == 2)
-                {
-                    strOrderType = "Take Away";
-                }
-          
+                strOrderType = dr["OrdertypeLabel"].ToString();
+                
                 lblOrderTypeId.Text = dr["order_type"].ToString();
                 lblOrderType.Text = strOrderType.ToString();
                 lblTableId.Text = dr["table_id"].ToString();

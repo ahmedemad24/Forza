@@ -171,9 +171,13 @@ namespace cypos
                                 }
                                 if (UserInfo.IsVaild(1)||UserInfo.UserType=="Admin")
                                 {
+                                    frmLanguagePopUp languagePopUp = new frmLanguagePopUp();
+                                    languagePopUp.ShowDialog();
                                     if (StartShift())
                                     {
                                         WriteLoginRecords();
+                                        
+
                                         frmMain frmMain = new frmMain();
 
                                         var UpdateUSer = UpdateUserNumberOfActiveInLogin(int.Parse(strUserId));
@@ -390,7 +394,7 @@ namespace cypos
             if (dt.Rows.Count == 0)
             {
                 // Start new shift
-                frmStartShift frmStartShift = new frmStartShift();
+                ShiftStartFrm frmStartShift = new ShiftStartFrm();
                 frmStartShift.userId = UserInfo.Userid;
                 frmStartShift.ShowDialog();
                 if (frmStartShift.userId == null)

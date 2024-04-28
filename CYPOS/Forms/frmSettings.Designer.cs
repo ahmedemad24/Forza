@@ -65,6 +65,7 @@
             this.txtScRate = new System.Windows.Forms.TextBox();
             this.txtItemPerPage = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbxShowItemImage = new System.Windows.Forms.CheckBox();
             this.btnKbInPrefix = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.txtInvoiceNoPrefix = new System.Windows.Forms.TextBox();
@@ -81,7 +82,6 @@
             this.pnlTitle = new System.Windows.Forms.Panel();
             this.pbxClose = new System.Windows.Forms.PictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.cbxShowItemImage = new System.Windows.Forms.CheckBox();
             this.pnlMain.SuspendLayout();
             this.pnlInner.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -319,11 +319,6 @@
             // 
             this.cmbOrderType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbOrderType.FormattingEnabled = true;
-            this.cmbOrderType.Items.AddRange(new object[] {
-            "Dine In",
-            "Take Away",
-            "Delivery Order",
-            "Pickup Order"});
             this.cmbOrderType.Location = new System.Drawing.Point(133, 21);
             this.cmbOrderType.Name = "cmbOrderType";
             this.cmbOrderType.Size = new System.Drawing.Size(154, 26);
@@ -506,6 +501,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Invoice Number Settings";
             // 
+            // cbxShowItemImage
+            // 
+            this.cbxShowItemImage.AutoSize = true;
+            this.cbxShowItemImage.Location = new System.Drawing.Point(11, 84);
+            this.cbxShowItemImage.Name = "cbxShowItemImage";
+            this.cbxShowItemImage.Size = new System.Drawing.Size(162, 22);
+            this.cbxShowItemImage.TabIndex = 160;
+            this.cbxShowItemImage.Text = "Show Item\'s images";
+            this.cbxShowItemImage.UseVisualStyleBackColor = true;
+            this.cbxShowItemImage.CheckedChanged += new System.EventHandler(this.cbxShowItemImage_CheckedChanged);
+            // 
             // btnKbInPrefix
             // 
             this.btnKbInPrefix.FlatAppearance.BorderSize = 0;
@@ -672,17 +678,6 @@
             this.lblTitle.TabIndex = 8;
             this.lblTitle.Text = "Settings";
             this.lblTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblTitle_MouseDown);
-            // 
-            // cbxShowItemImage
-            // 
-            this.cbxShowItemImage.AutoSize = true;
-            this.cbxShowItemImage.Location = new System.Drawing.Point(11, 84);
-            this.cbxShowItemImage.Name = "cbxShowItemImage";
-            this.cbxShowItemImage.Size = new System.Drawing.Size(162, 22);
-            this.cbxShowItemImage.TabIndex = 160;
-            this.cbxShowItemImage.Text = "Show Item\'s images";
-            this.cbxShowItemImage.UseVisualStyleBackColor = true;
-            this.cbxShowItemImage.CheckedChanged += new System.EventHandler(this.cbxShowItemImage_CheckedChanged);
             // 
             // frmSettings
             // 

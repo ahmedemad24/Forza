@@ -19,7 +19,7 @@ namespace cypos.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -446,6 +446,16 @@ namespace cypos.Properties {
         internal static System.Drawing.Bitmap edit24x24 {
             get {
                 object obj = ResourceManager.GetObject("edit24x24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EgyptFlag {
+            get {
+                object obj = ResourceManager.GetObject("EgyptFlag", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -917,6 +927,16 @@ namespace cypos.Properties {
             get {
                 object obj = ResourceManager.GetObject("opendrawer", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] order_food_svgrepo_com {
+            get {
+                object obj = ResourceManager.GetObject("order_food_svgrepo_com", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -1576,6 +1596,16 @@ namespace cypos.Properties {
         internal static System.Drawing.Bitmap users_bg {
             get {
                 object obj = ResourceManager.GetObject("users_bg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap UsFlag {
+            get {
+                object obj = ResourceManager.GetObject("UsFlag", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
