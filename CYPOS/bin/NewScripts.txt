@@ -1,0 +1,188 @@
+﻿GO
+
+/****** Object:  View [dbo].[orderType_summary_perShift]    Script Date: 4/2/2024 9:49:26 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE OR ALTER VIEW [dbo].[orderType_summary_perShift] AS
+select sum(ISNULL(InvHead.paid_amount,0)) payment_amount,COUNT(invoice_id) cntr ,usrShft.[id] ShiftId ,order_type
+FROM tbl_InvoiceHeader InvHead  
+join tbl_User usr on usr.[user_name]=InvHead.[user_name]
+join tbl_UserShifts usrShft on usrShft.[userId] =usr.[id] --and usrShft.id=1
+where 
+    InvHead.log_date >= usrShft.start_ShiftDate and usrShft.end_ShiftDate >=InvHead.log_date
+GROUP BY order_type ,usrShft.[id]
+GO
+
+
+
+
+
+USE [CYPOSDb]
+GO
+
+/****** Object:  View [dbo].[paymentType_summary_perShift]    Script Date: 4/2/2024 9:50:36 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE OR ALTER VIEW [dbo].[paymentType_summary_perShift] AS
+SELECT shiftId , Cash , Cheque , [Credit Cards]
+FROM   
+(
+	SELECT ISNULL(paid_amount,0) payment_amount, payment_type, h.[user_name],usrShft.id shiftId
+    FROM tbl_InvoiceHeader h
+	right join tbl_UserShifts usrShft on usrShft.id =h.shift_id
+		and h.log_date>= usrShft.start_ShiftDate --and  usrShft.end_ShiftDate >=h.log_date
+) p  
+PIVOT  
+(  
+sum(payment_amount) FOR payment_type IN  (Cash, Cheque, [Credit Cards])  
+) AS pvt
+GO
+
+
+
+
+
+
+USE [CYPOSDb]
+GO
+
+/****** Object:  View [dbo].[summaryAmount_perShift]    Script Date: 4/2/2024 9:50:57 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE OR ALTER   VIEW [dbo].[summaryAmount_perShift] AS
+    select 
+        sum(ISNULL(InvHead.paid_amount,0)) payment_amount
+        ,COUNT(invoice_id) cntr 
+        ,usrShft.[id] ShiftId 
+        ,(ISNULL(EndAmount,0) )EndAmount--+ISNULL(StartAmount,0) EndAmount
+
+    FROM tbl_InvoiceHeader InvHead  
+    join tbl_User usr on usr.[user_name]=InvHead.[user_name]
+    right join tbl_UserShifts usrShft on usrShft.id =InvHead.shift_id
+		and InvHead.log_date >= usrShft.start_ShiftDate and usrShft.end_ShiftDate >=InvHead.log_date
+    GROUP BY usrShft.[id],EndAmount,StartAmount
+GO
+
+
+
+
+
+USE [CYPOSDb]
+GO
+
+/****** Object:  View [dbo].[TotalGifts_PerShift]    Script Date: 4/2/2024 9:51:13 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE OR ALTER VIEW [dbo].[TotalGifts_PerShift] AS
+    select 
+        sum(ISNULL(InvHead.payment_amount,0)) TotalGiftAmount
+        ,COUNT(invoice_id) cntrOFGifts 
+        ,usrShft.[id] ShiftId 
+    FROM tbl_InvoiceHeader InvHead  
+    join tbl_User usr on usr.[user_name]=InvHead.[user_name]
+    join tbl_UserShifts usrShft on usrShft.[userId] =usr.[id]
+    where 
+        InvHead.log_date >= usrShft.start_ShiftDate and usrShft.end_ShiftDate >=InvHead.log_date  and InvHead.isCanceled =0 and IsGifted=1
+    GROUP BY usrShft.[id],EndAmount,StartAmount
+GO
+
+
+
+
+
+
+
+USE [CYPOSDb]
+GO
+
+/****** Object:  View [dbo].[TotalSales_perShift]    Script Date: 4/2/2024 9:51:36 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE OR ALTER VIEW [dbo].[TotalSales_perShift] AS
+    select a.*,isnull(b.Expenses,0) Expenses , isnull(c.canceled,0) canceled from (
+        select 
+            usrShft.[id] ShiftId ,userId
+            ,ISNULL(sum(ISNULL(InvHead.paid_amount,0)),0) payment_amount
+            ,ISNULL(sum(ISNULL(InvHead.tax1_amount,0)+ISNULL(InvHead.tax2_amount,0)),0) taxes
+            ,ISNULL(sum(ISNULL(InvHead.discount_amount,0)),0) discount
+            ,ISNULL(COUNT(invoice_id),0) cntr
+			,SUM(Cast (InvHead.isCanceled as int)) cancelled_Ctr  
+        FROM tbl_InvoiceHeader InvHead  
+        right join tbl_UserShifts usrShft on usrShft.id =InvHead.shift_id
+			and InvHead.log_date >= usrShft.start_ShiftDate and usrShft.end_ShiftDate >=InvHead.log_date
+        GROUP BY usrShft.[id],userId
+    )a full outer join (
+        select  usrShft.id shiftId, usrId ,ISNULL(sum(ISNULL(amount,0)),0) Expenses 
+        from tbl_Expense exps 
+        right join tbl_UserShifts usrShft on usrShft.[userId] =exps.[usrId]
+			and exps.expense_date >= usrShft.start_ShiftDate and usrShft.end_ShiftDate >=exps.expense_date
+        group by usrId , usrShft.id
+    ) b on b.shiftId=a.ShiftId
+	full outer join(
+		select sum(canceled) canceled , ShiftId from
+		(
+			select /*iif(cast(head.CancelDate as date)!=cast(head.log_date as date),*/sum(ISNULL(head.payment_amount ,0)) /*,0)*/ canceled
+				, usrShft.id ShiftId
+			from tbl_InvoiceHeader head 
+			right join tbl_UserShifts usrShft on usrShft.id =head.shift_id
+				and head.log_date >= usrShft.start_ShiftDate and usrShft.end_ShiftDate >=head.log_date and CancelDate is not null
+			GROUP BY usrShft.[id],userId,head.log_date,CancelDate
+		) d
+		GROUP BY ShiftId
+    ) c on a.shiftId=c.ShiftId
+GO
+
+
+
+IF NOT EXISTS (select * from sys.tables where name='Installments')
+BEGIN
+    CREATE TABLE [dbo].[Installments](
+	    [Id] [bigint] IDENTITY(1,1) NOT NULL,
+	    [CustomerId] [bigint] NOT NULL,
+	    [InvoiceId] [bigint] NOT NULL,
+	    [PaidAmount] [decimal](18, 2) NOT NULL,
+	    [RemainAmount] [decimal](18, 2) NOT NULL,
+	    [LogDate] [datetime] NOT NULL,
+    PRIMARY KEY CLUSTERED 
+    (
+	    [Id] ASC
+    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+    ) ON [PRIMARY]
+    GO
+
+    ALTER TABLE [dbo].[Installments] ADD  DEFAULT (getdate()) FOR [LogDate]
+    GO
+
+    ALTER TABLE [dbo].[Installments]  WITH CHECK ADD FOREIGN KEY([CustomerId])
+    REFERENCES [dbo].[tbl_Customer] ([id])
+    GO
+
+    ALTER TABLE [dbo].[Installments]  WITH CHECK ADD FOREIGN KEY([InvoiceId])
+    REFERENCES [dbo].[tbl_InvoiceHeader] ([invoice_id])
+    GO
+
+
+END

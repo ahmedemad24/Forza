@@ -46,6 +46,7 @@
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.btnPrevious = new System.Windows.Forms.ToolStripButton();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.searchItemTxtbx = new System.Windows.Forms.TextBox();
             this.lblCategory = new System.Windows.Forms.Label();
             this.pnlCategory = new System.Windows.Forms.Panel();
             this.pnlCategoryButtons = new System.Windows.Forms.Panel();
@@ -338,6 +339,7 @@
             // 
             // panel8
             // 
+            this.panel8.Controls.Add(this.searchItemTxtbx);
             this.panel8.Controls.Add(this.lblCategory);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel8.Location = new System.Drawing.Point(1, 1);
@@ -345,6 +347,15 @@
             this.panel8.Padding = new System.Windows.Forms.Padding(10, 1, 1, 1);
             this.panel8.Size = new System.Drawing.Size(465, 46);
             this.panel8.TabIndex = 159;
+            // 
+            // searchItemTxtbx
+            // 
+            this.searchItemTxtbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchItemTxtbx.Location = new System.Drawing.Point(297, 10);
+            this.searchItemTxtbx.Name = "searchItemTxtbx";
+            this.searchItemTxtbx.Size = new System.Drawing.Size(153, 24);
+            this.searchItemTxtbx.TabIndex = 156;
+            this.searchItemTxtbx.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // lblCategory
             // 
@@ -1868,6 +1879,7 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
             this.pnlCategory.ResumeLayout(false);
             this.pnlCategoryButtons.ResumeLayout(false);
             this.pnlUpCat.ResumeLayout(false);
@@ -2039,5 +2051,6 @@
         private System.Windows.Forms.DataGridViewButtonColumn popupButtonColumn;
         private System.Windows.Forms.Button transferBtn;
         private System.Windows.Forms.Button mergeTblBtn;
+        private System.Windows.Forms.TextBox searchItemTxtbx;
     }
 }
