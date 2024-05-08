@@ -658,6 +658,12 @@
     <Compile Include="Forms\ShiftStartFrm.Designer.cs">
       <DependentUpon>ShiftStartFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UserProfilefrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UserProfilefrm.Designer.cs">
+      <DependentUpon>UserProfilefrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ValidateUserType.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -770,9 +776,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\NumPad.resx">
       <DependentUpon>NumPad.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EmployeeFrms\FrmEmployeesCRUD.ar.resx">
-      <DependentUpon>FrmEmployeesCRUD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EmployeeFrms\FrmEmployeesCRUD.resx">
       <DependentUpon>FrmEmployeesCRUD.cs</DependentUpon>
@@ -962,6 +965,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\XtraForm1.ar.resx">
       <DependentUpon>XtraForm1.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\XtraForm1.resx">
       <DependentUpon>XtraForm1.cs</DependentUpon>

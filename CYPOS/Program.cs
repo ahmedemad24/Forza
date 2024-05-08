@@ -25,7 +25,7 @@ namespace cypos
             //Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("ar-AR");
 
             Application.Run(new FrmEmployeesCRUD());
-            //Application.Run(new XtraForm1());
+            //Application.Run(new frmLogin());
             //Application.Run(new summaryShift());
         }
     }
