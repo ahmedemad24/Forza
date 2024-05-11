@@ -646,6 +646,12 @@
     <Compile Include="Forms\frmUserProfile.Designer.cs">
       <DependentUpon>frmUserProfile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UserProfilefrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UserProfilefrm.Designer.cs">
+      <DependentUpon>UserProfilefrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ShiftEndFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -657,12 +663,6 @@
     </Compile>
     <Compile Include="Forms\ShiftStartFrm.Designer.cs">
       <DependentUpon>ShiftStartFrm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\UserProfilefrm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\UserProfilefrm.Designer.cs">
-      <DependentUpon>UserProfilefrm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ValidateUserType.cs">
       <SubType>Form</SubType>
@@ -945,6 +945,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmUserProfile.resx">
       <DependentUpon>frmUserProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserProfilefrm.resx">
+      <DependentUpon>UserProfilefrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ShiftEndFrm.ar.resx">
       <DependentUpon>ShiftEndFrm.cs</DependentUpon>

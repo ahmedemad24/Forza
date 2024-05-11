@@ -72,16 +72,16 @@ namespace cypos.Forms
             // 
             // ShiftCodeLbl
             // 
-            resources.ApplyResources(this.ShiftCodeLbl, "ShiftCodeLbl");
             this.ShiftCodeLbl.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("ShiftCodeLbl.Appearance.Font")));
             this.ShiftCodeLbl.Appearance.Options.UseFont = true;
+            resources.ApplyResources(this.ShiftCodeLbl, "ShiftCodeLbl");
             this.ShiftCodeLbl.Name = "ShiftCodeLbl";
             // 
             // UserNameLbl
             // 
-            resources.ApplyResources(this.UserNameLbl, "UserNameLbl");
             this.UserNameLbl.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("UserNameLbl.Appearance.Font")));
             this.UserNameLbl.Appearance.Options.UseFont = true;
+            resources.ApplyResources(this.UserNameLbl, "UserNameLbl");
             this.UserNameLbl.Name = "UserNameLbl";
             // 
             // UserName
@@ -101,33 +101,33 @@ namespace cypos.Forms
             // 
             // barDockControlTop
             // 
-            resources.ApplyResources(this.barDockControlTop, "barDockControlTop");
             this.barDockControlTop.CausesValidation = false;
+            resources.ApplyResources(this.barDockControlTop, "barDockControlTop");
             this.barDockControlTop.Manager = this.barManager1;
             // 
             // barDockControlBottom
             // 
-            resources.ApplyResources(this.barDockControlBottom, "barDockControlBottom");
             this.barDockControlBottom.CausesValidation = false;
+            resources.ApplyResources(this.barDockControlBottom, "barDockControlBottom");
             this.barDockControlBottom.Manager = this.barManager1;
             // 
             // barDockControlLeft
             // 
-            resources.ApplyResources(this.barDockControlLeft, "barDockControlLeft");
             this.barDockControlLeft.CausesValidation = false;
+            resources.ApplyResources(this.barDockControlLeft, "barDockControlLeft");
             this.barDockControlLeft.Manager = this.barManager1;
             // 
             // barDockControlRight
             // 
-            resources.ApplyResources(this.barDockControlRight, "barDockControlRight");
             this.barDockControlRight.CausesValidation = false;
+            resources.ApplyResources(this.barDockControlRight, "barDockControlRight");
             this.barDockControlRight.Manager = this.barManager1;
             // 
             // ShiftDate
             // 
-            resources.ApplyResources(this.ShiftDate, "ShiftDate");
             this.ShiftDate.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("ShiftDate.Appearance.Font")));
             this.ShiftDate.Appearance.Options.UseFont = true;
+            resources.ApplyResources(this.ShiftDate, "ShiftDate");
             this.ShiftDate.Name = "ShiftDate";
             // 
             // StartDatePicker
@@ -143,19 +143,19 @@ namespace cypos.Forms
             // 
             // panelControl1
             // 
-            resources.ApplyResources(this.panelControl1, "panelControl1");
             this.panelControl1.Controls.Add(this.ShiftCodeLbl);
             this.panelControl1.Controls.Add(this.ShiftCodeTxt);
             this.panelControl1.Controls.Add(this.UserNameLbl);
             this.panelControl1.Controls.Add(this.UserName);
+            resources.ApplyResources(this.panelControl1, "panelControl1");
             this.panelControl1.Name = "panelControl1";
             // 
             // panelControl2
             // 
-            resources.ApplyResources(this.panelControl2, "panelControl2");
             this.panelControl2.Controls.Add(this.EndDatePicker);
             this.panelControl2.Controls.Add(this.StartDatePicker);
             this.panelControl2.Controls.Add(this.ShiftDate);
+            resources.ApplyResources(this.panelControl2, "panelControl2");
             this.panelControl2.Name = "panelControl2";
             // 
             // EndDatePicker
@@ -171,16 +171,16 @@ namespace cypos.Forms
             // 
             // panelControl3
             // 
-            resources.ApplyResources(this.panelControl3, "panelControl3");
             this.panelControl3.Controls.Add(this.labelControl1);
             this.panelControl3.Controls.Add(this.amountTxt);
+            resources.ApplyResources(this.panelControl3, "panelControl3");
             this.panelControl3.Name = "panelControl3";
             // 
             // labelControl1
             // 
-            resources.ApplyResources(this.labelControl1, "labelControl1");
             this.labelControl1.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl1.Appearance.Font")));
             this.labelControl1.Appearance.Options.UseFont = true;
+            resources.ApplyResources(this.labelControl1, "labelControl1");
             this.labelControl1.Name = "labelControl1";
             // 
             // amountTxt
@@ -195,9 +195,9 @@ namespace cypos.Forms
             // 
             // EndBtn
             // 
-            resources.ApplyResources(this.EndBtn, "EndBtn");
             this.EndBtn.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("EndBtn.Appearance.Font")));
             this.EndBtn.Appearance.Options.UseFont = true;
+            resources.ApplyResources(this.EndBtn, "EndBtn");
             this.EndBtn.Name = "EndBtn";
             this.EndBtn.Click += new System.EventHandler(this.EndBtn_Click);
             // 
