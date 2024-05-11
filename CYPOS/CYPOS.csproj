@@ -646,6 +646,12 @@
     <Compile Include="Forms\frmUserProfile.Designer.cs">
       <DependentUpon>frmUserProfile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UserProfilefrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UserProfilefrm.Designer.cs">
+      <DependentUpon>UserProfilefrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ShiftEndFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -770,9 +776,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\NumPad.resx">
       <DependentUpon>NumPad.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EmployeeFrms\FrmEmployeesCRUD.ar.resx">
-      <DependentUpon>FrmEmployeesCRUD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EmployeeFrms\FrmEmployeesCRUD.resx">
       <DependentUpon>FrmEmployeesCRUD.cs</DependentUpon>
@@ -943,6 +946,9 @@
     <EmbeddedResource Include="Forms\frmUserProfile.resx">
       <DependentUpon>frmUserProfile.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserProfilefrm.resx">
+      <DependentUpon>UserProfilefrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ShiftEndFrm.ar.resx">
       <DependentUpon>ShiftEndFrm.cs</DependentUpon>
     </EmbeddedResource>
@@ -962,6 +968,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\XtraForm1.ar.resx">
       <DependentUpon>XtraForm1.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\XtraForm1.resx">
       <DependentUpon>XtraForm1.cs</DependentUpon>

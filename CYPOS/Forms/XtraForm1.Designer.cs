@@ -51,7 +51,19 @@
             // gridControl
             // 
             resources.ApplyResources(this.gridControl, "gridControl");
+            this.gridControl.EmbeddedNavigator.AccessibleDescription = resources.GetString("gridControl.EmbeddedNavigator.AccessibleDescription");
+            this.gridControl.EmbeddedNavigator.AccessibleName = resources.GetString("gridControl.EmbeddedNavigator.AccessibleName");
+            this.gridControl.EmbeddedNavigator.AllowHtmlTextInToolTip = ((DevExpress.Utils.DefaultBoolean)(resources.GetObject("gridControl.EmbeddedNavigator.AllowHtmlTextInToolTip")));
+            this.gridControl.EmbeddedNavigator.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("gridControl.EmbeddedNavigator.Anchor")));
+            this.gridControl.EmbeddedNavigator.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("gridControl.EmbeddedNavigator.BackgroundImage")));
+            this.gridControl.EmbeddedNavigator.BackgroundImageLayout = ((System.Windows.Forms.ImageLayout)(resources.GetObject("gridControl.EmbeddedNavigator.BackgroundImageLayout")));
+            this.gridControl.EmbeddedNavigator.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("gridControl.EmbeddedNavigator.ImeMode")));
             this.gridControl.EmbeddedNavigator.Margin = ((System.Windows.Forms.Padding)(resources.GetObject("gridControl.EmbeddedNavigator.Margin")));
+            this.gridControl.EmbeddedNavigator.MaximumSize = ((System.Drawing.Size)(resources.GetObject("gridControl.EmbeddedNavigator.MaximumSize")));
+            this.gridControl.EmbeddedNavigator.TextLocation = ((DevExpress.XtraEditors.NavigatorButtonsTextLocation)(resources.GetObject("gridControl.EmbeddedNavigator.TextLocation")));
+            this.gridControl.EmbeddedNavigator.ToolTip = resources.GetString("gridControl.EmbeddedNavigator.ToolTip");
+            this.gridControl.EmbeddedNavigator.ToolTipIconType = ((DevExpress.Utils.ToolTipIconType)(resources.GetObject("gridControl.EmbeddedNavigator.ToolTipIconType")));
+            this.gridControl.EmbeddedNavigator.ToolTipTitle = resources.GetString("gridControl.EmbeddedNavigator.ToolTipTitle");
             this.gridControl.MainView = this.cardView1;
             this.gridControl.MenuManager = this.ribbonControl;
             this.gridControl.Name = "gridControl";
@@ -61,7 +73,8 @@
             // cardView1
             // 
             this.cardView1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.cardView1.DetailHeight = 431;
+            resources.ApplyResources(this.cardView1, "cardView1");
+            this.cardView1.DetailHeight = 404;
             this.cardView1.GridControl = this.gridControl;
             this.cardView1.Name = "cardView1";
             this.cardView1.OptionsBehavior.Editable = false;
@@ -70,8 +83,13 @@
             // 
             // ribbonControl
             // 
-            this.ribbonControl.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(35, 37, 35, 37);
+            resources.ApplyResources(this.ribbonControl, "ribbonControl");
+            this.ribbonControl.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(35);
             this.ribbonControl.ExpandCollapseItem.Id = 0;
+            this.ribbonControl.ExpandCollapseItem.ImageOptions.ImageIndex = ((int)(resources.GetObject("ribbonControl.ExpandCollapseItem.ImageOptions.ImageIndex")));
+            this.ribbonControl.ExpandCollapseItem.ImageOptions.LargeImageIndex = ((int)(resources.GetObject("ribbonControl.ExpandCollapseItem.ImageOptions.LargeImageIndex")));
+            this.ribbonControl.ExpandCollapseItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("ribbonControl.ExpandCollapseItem.ImageOptions.SvgImage")));
+            this.ribbonControl.ExpandCollapseItem.SearchTags = resources.GetString("ribbonControl.ExpandCollapseItem.SearchTags");
             this.ribbonControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl.ExpandCollapseItem,
             this.ribbonControl.SearchEditItem,
@@ -81,7 +99,6 @@
             this.bbiEdit,
             this.bbiDelete,
             this.bbiRefresh});
-            resources.ApplyResources(this.ribbonControl, "ribbonControl");
             this.ribbonControl.MaxItemId = 20;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.OptionsMenuMinWidth = 385;
@@ -96,7 +113,10 @@
             // 
             resources.ApplyResources(this.bbiPrintPreview, "bbiPrintPreview");
             this.bbiPrintPreview.Id = 14;
+            this.bbiPrintPreview.ImageOptions.ImageIndex = ((int)(resources.GetObject("bbiPrintPreview.ImageOptions.ImageIndex")));
             this.bbiPrintPreview.ImageOptions.ImageUri.Uri = "Preview";
+            this.bbiPrintPreview.ImageOptions.LargeImageIndex = ((int)(resources.GetObject("bbiPrintPreview.ImageOptions.LargeImageIndex")));
+            this.bbiPrintPreview.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiPrintPreview.ImageOptions.SvgImage")));
             this.bbiPrintPreview.Name = "bbiPrintPreview";
             this.bbiPrintPreview.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiPrintPreview_ItemClick);
             // 
@@ -104,34 +124,49 @@
             // 
             resources.ApplyResources(this.bsiRecordsCount, "bsiRecordsCount");
             this.bsiRecordsCount.Id = 15;
+            this.bsiRecordsCount.ImageOptions.ImageIndex = ((int)(resources.GetObject("bsiRecordsCount.ImageOptions.ImageIndex")));
+            this.bsiRecordsCount.ImageOptions.LargeImageIndex = ((int)(resources.GetObject("bsiRecordsCount.ImageOptions.LargeImageIndex")));
+            this.bsiRecordsCount.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bsiRecordsCount.ImageOptions.SvgImage")));
             this.bsiRecordsCount.Name = "bsiRecordsCount";
             // 
             // btnNew
             // 
             resources.ApplyResources(this.btnNew, "btnNew");
             this.btnNew.Id = 16;
+            this.btnNew.ImageOptions.ImageIndex = ((int)(resources.GetObject("btnNew.ImageOptions.ImageIndex")));
             this.btnNew.ImageOptions.ImageUri.Uri = "New";
+            this.btnNew.ImageOptions.LargeImageIndex = ((int)(resources.GetObject("btnNew.ImageOptions.LargeImageIndex")));
+            this.btnNew.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnNew.ImageOptions.SvgImage")));
             this.btnNew.Name = "btnNew";
             // 
             // bbiEdit
             // 
             resources.ApplyResources(this.bbiEdit, "bbiEdit");
             this.bbiEdit.Id = 17;
+            this.bbiEdit.ImageOptions.ImageIndex = ((int)(resources.GetObject("bbiEdit.ImageOptions.ImageIndex")));
             this.bbiEdit.ImageOptions.ImageUri.Uri = "Edit";
+            this.bbiEdit.ImageOptions.LargeImageIndex = ((int)(resources.GetObject("bbiEdit.ImageOptions.LargeImageIndex")));
+            this.bbiEdit.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiEdit.ImageOptions.SvgImage")));
             this.bbiEdit.Name = "bbiEdit";
             // 
             // bbiDelete
             // 
             resources.ApplyResources(this.bbiDelete, "bbiDelete");
             this.bbiDelete.Id = 18;
+            this.bbiDelete.ImageOptions.ImageIndex = ((int)(resources.GetObject("bbiDelete.ImageOptions.ImageIndex")));
             this.bbiDelete.ImageOptions.ImageUri.Uri = "Delete";
+            this.bbiDelete.ImageOptions.LargeImageIndex = ((int)(resources.GetObject("bbiDelete.ImageOptions.LargeImageIndex")));
+            this.bbiDelete.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiDelete.ImageOptions.SvgImage")));
             this.bbiDelete.Name = "bbiDelete";
             // 
             // bbiRefresh
             // 
             resources.ApplyResources(this.bbiRefresh, "bbiRefresh");
             this.bbiRefresh.Id = 19;
+            this.bbiRefresh.ImageOptions.ImageIndex = ((int)(resources.GetObject("bbiRefresh.ImageOptions.ImageIndex")));
             this.bbiRefresh.ImageOptions.ImageUri.Uri = "Refresh";
+            this.bbiRefresh.ImageOptions.LargeImageIndex = ((int)(resources.GetObject("bbiRefresh.ImageOptions.LargeImageIndex")));
+            this.bbiRefresh.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiRefresh.ImageOptions.SvgImage")));
             this.bbiRefresh.Name = "bbiRefresh";
             // 
             // ribbonPage1
@@ -164,8 +199,8 @@
             // 
             // ribbonStatusBar
             // 
-            this.ribbonStatusBar.ItemLinks.Add(this.bsiRecordsCount);
             resources.ApplyResources(this.ribbonStatusBar, "ribbonStatusBar");
+            this.ribbonStatusBar.ItemLinks.Add(this.bsiRecordsCount);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbonControl;
             // 
