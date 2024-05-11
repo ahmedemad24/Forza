@@ -44,6 +44,11 @@
             this.btnKbContact = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.dtDob = new System.Windows.Forms.DateTimePicker();
+            this.btnChangePic = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtUserName = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtPassword = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.PicUserPhoto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -210,11 +215,71 @@
             this.dtDob.Size = new System.Drawing.Size(168, 26);
             this.dtDob.TabIndex = 14;
             // 
+            // btnChangePic
+            // 
+            this.btnChangePic.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChangePic.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnChangePic.Location = new System.Drawing.Point(20, 220);
+            this.btnChangePic.Name = "btnChangePic";
+            this.btnChangePic.Size = new System.Drawing.Size(185, 30);
+            this.btnChangePic.TabIndex = 15;
+            this.btnChangePic.Text = "Change Picture";
+            this.btnChangePic.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label6.Location = new System.Drawing.Point(20, 255);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(75, 18);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "Username";
+            // 
+            // txtUserName
+            // 
+            this.txtUserName.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUserName.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtUserName.Location = new System.Drawing.Point(20, 275);
+            this.txtUserName.Multiline = true;
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.txtUserName.Size = new System.Drawing.Size(185, 30);
+            this.txtUserName.TabIndex = 17;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label7.Location = new System.Drawing.Point(20, 310);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(69, 18);
+            this.label7.TabIndex = 18;
+            this.label7.Text = "Password";
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassword.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtPassword.Location = new System.Drawing.Point(20, 330);
+            this.txtPassword.Multiline = true;
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.txtPassword.Size = new System.Drawing.Size(185, 30);
+            this.txtPassword.TabIndex = 19;
+            // 
             // UserProfilefrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(593, 392);
+            this.ClientSize = new System.Drawing.Size(594, 428);
+            this.Controls.Add(this.txtPassword);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.txtUserName);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.btnChangePic);
             this.Controls.Add(this.dtDob);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnKbContact);
@@ -255,5 +320,10 @@
         private System.Windows.Forms.Button btnKbContact;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DateTimePicker dtDob;
+        private System.Windows.Forms.Button btnChangePic;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtUserName;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtPassword;
     }
 }
