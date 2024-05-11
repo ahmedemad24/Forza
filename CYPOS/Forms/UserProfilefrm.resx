@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="label1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="txtUserFullName.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnKbName.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnKbName.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -139,6 +148,9 @@
         JzxVKBQlfwD5byoXfAyHfgAAAABJRU5ErkJggg==
 </value>
   </data>
+  <metadata name="PicUserPhoto.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="PicUserPhoto.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAIAAAB7GkOtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -787,6 +799,15 @@
         sWRUnAAsFoslo+IEYLFYLJmUt+/+fwyTv2dEorOmAAAAAElFTkSuQmCC
 </value>
   </data>
+  <metadata name="label2.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="txtAddress.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnKbAddress.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="btnKbAddress.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAUCAYAAADskT9PAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
@@ -808,6 +829,15 @@
         DId+AAAAAElFTkSuQmCC
 </value>
   </data>
+  <metadata name="label3.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="txtEmail.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnKbEmail.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="btnKbEmail.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAUCAYAAADskT9PAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
@@ -829,6 +859,15 @@
         DId+AAAAAElFTkSuQmCC
 </value>
   </data>
+  <metadata name="label4.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="txtContact.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnKbContact.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="btnKbContact.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAUCAYAAADskT9PAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
@@ -850,4 +889,89 @@
         DId+AAAAAElFTkSuQmCC
 </value>
   </data>
+  <metadata name="label5.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="dtDob.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnChangePic.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="label6.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="txtUserName.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="label7.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="txtPassword.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="label8.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="rdbUserRole.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnUpdate.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="btnUpdate.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        PKiYiIWp/QcZdG36OzZRjQAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <metadata name="btnExit.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="btnExit.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAGQAAAAtCAYAAABYtc7wAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAADSUlEQVR4Xu3YP2gUQRQG8KsD
+        kkLxkrsoiZooxCIgFppCsbBRBLVQBIugCIL4p9NK7LRLE0gbGwvBwkpFQUnhHQRERIQUkWChIf6vLBae
+        883dnJu5L+dt9ibPxFn4sbvf7M0d7zE3uRREJPqH0DDSQ8NIDw0jPTSM9NAw0kPDSA8NIz00jPTQMNJD
+        w0gPDSM9NFxLDmzfmAubUxMN1xJW5CzYnJpoGMrEhuKFU4XC86zwOjYfsCJn0GVMGXPGU+Mme4/VRMNQ
+        UNzk8Ywkz15JMjMryfyCJF9/SrL4vebLD0k+LErydl6S6jtJXrwWPI/XsfkARTSmDSGQY9xvhINm+K9R
+        bQoNQ0FhFy5dkayWawiK5xVzOcs1BStD3t8elJc3trlnsVLsajFG2fuGRMNQUNhPZ8ckqxYNQeFsMX9N
+        7mriFdlvBrCG+Fa1KTQMBYX9eOykZNVOQ1oUFPDcjDFulI2Hxrf6uel5zDVxZou7R9Pw1dbFPkOn0TAU
+        25CjxyXNHf51Wo6GsL3lEcmW8BriTLHP0Gk0DMU25OBhSWOH/0zeFYKxN7d2NO5P79ksn8d3yt2xrfYe
+        X1lowNVDvU1fexirv26OfYZOo2EoKGylZ6/40gcbb6chfiEBBcb4keFNtrCuAWjOk2sDrtCNhrj7/2qF
+        VHtHxOoZkYo5swM5xp2cK2QW5/P7i7ZJaAYagCa5Z/7SkPW9h1R6h03B/3CHfw3VuhwNwR6y27BNwQpB
+        U+6cKLvxxl9ZLRpynb13KDQMpdaQIVPsIVNocy6560F7XQU7PmjP9t7IuULsxu72BzyHBmAfcc+08ZVl
+        G8s+Q6fRMBTbkNKAKX5NtXHuT12n85qcDWls4q7I2D/Sm7zfEH+8bpp9hk6jYSgobLXcJ1bJKZt7o36u
+        pK5r574Vb+pwbl+xaRN3m/yDi/323m8IVhMa6OZwuf/+IdAwlCUNyaBFQ9r910naPZKl2f2GWH8rJNB/
+        e9EU9gPQwRh+pd83Lhvp//DinL4eNdK/5NNzrL89xBzdRmkFutl8YAqVC5tTEw3XElbkLNicmmgY6aFh
+        pIeGkR4aRnpoGOmhYaSHhpEeGkZ6aBjpoWGkh4aRHhpGemgY6aFhpEUKvwEQyNMksbOAgwAAAABJRU5E
+        rkJggg==
+</value>
+  </data>
+  <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>

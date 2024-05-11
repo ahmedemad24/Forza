@@ -49,6 +49,10 @@
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.rdbUserRole = new System.Windows.Forms.RadioButton();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PicUserPhoto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -270,11 +274,61 @@
             this.txtPassword.Size = new System.Drawing.Size(185, 30);
             this.txtPassword.TabIndex = 19;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label8.Location = new System.Drawing.Point(20, 365);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(135, 18);
+            this.label8.TabIndex = 20;
+            this.label8.Text = "Position (User Role)";
+            // 
+            // rdbUserRole
+            // 
+            this.rdbUserRole.AutoSize = true;
+            this.rdbUserRole.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbUserRole.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.rdbUserRole.Location = new System.Drawing.Point(20, 385);
+            this.rdbUserRole.Name = "rdbUserRole";
+            this.rdbUserRole.Size = new System.Drawing.Size(66, 22);
+            this.rdbUserRole.TabIndex = 21;
+            this.rdbUserRole.TabStop = true;
+            this.rdbUserRole.Text = "Admin";
+            this.rdbUserRole.UseVisualStyleBackColor = true;
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
+            this.btnUpdate.Location = new System.Drawing.Point(240, 385);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(95, 50);
+            this.btnUpdate.TabIndex = 22;
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            // 
+            // btnExit
+            // 
+            this.btnExit.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnExit.Image = ((System.Drawing.Image)(resources.GetObject("btnExit.Image")));
+            this.btnExit.Location = new System.Drawing.Point(413, 385);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(95, 50);
+            this.btnExit.TabIndex = 23;
+            this.btnExit.UseVisualStyleBackColor = true;
+            // 
             // UserProfilefrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(594, 428);
+            this.ClientSize = new System.Drawing.Size(594, 463);
+            this.Controls.Add(this.btnExit);
+            this.Controls.Add(this.btnUpdate);
+            this.Controls.Add(this.rdbUserRole);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtUserName);
@@ -325,5 +379,9 @@
         private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.RadioButton rdbUserRole;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnExit;
     }
 }
