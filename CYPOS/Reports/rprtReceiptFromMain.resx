@@ -126,23 +126,21 @@
 	,payment_type Payment,iif(sc_rate=0,'','Service Charge ('+cast(sc_rate as varchar(5))+'%)') sc_rate,sc_charge
 	, h.invoice_date,h.invoice_time,(select table_name from tbl_Tables where id=table_id) TableName,
 	(select top 1 '\Images\'+logo from tbl_Company) Logo ,
-	(select top 1 company_name+CHAR(13)+CHAR(10)+company_address +CHAR(13)+CHAR(10)+company_phone from tbl_Company) footer,
-	CASE
-	WHEN h.order_type = 1 THEN 'DINE IN'
-	WHEN h.order_type = 2 THEN 'TAKE AWAY'
-	WHEN h.order_type = 3 THEN 'DELIVERY'
-	WHEN h.order_type = 4 THEN 'PICK UP'
-	END 'order_type', CashUsr.name user_name, c.*, d.item_name, d.qty
+	(select top 1 company_name+CHAR(13)+CHAR(10)+company_address +CHAR(13)+CHAR(10)+company_phone from tbl_Company) footer
+	,iif(@IsArabicLangSelected=0, ty.LabelEn ,isnull(ty.LabelAr,ty.LabelEn ))'order_type', CashUsr.name user_name, c.*
+	,iif(@IsArabicLangSelected=0, tbl_Item.item_name, isnull(tbl_Item.item_nameAr,tbl_Item.item_name))item_name, d.qty
 	, d.selling_price, d.total, h.discount_amount
 	, iif(h.order_type = 3, r.ServiceAmount, 0) DeliveryFees, r.RegionName
 	, h.tax1_amount, h.tax2_amount
 	, due_amount,paid_amount
 FROM tbl_InvoiceHeader h
 left join tbl_InvoiceDetail d on h.invoice_id = d.header_id
+left join tbl_Item on tbl_Item.item_code = d.item_code
 left join tbl_Customer c on h.customer_id = c.id
 left join tbl_region r on c.RegionId = r.RegionId
 left join tbl_User usr on  usr.id=waiter_id
-left join tbl_User CashUsr on  CashUsr.user_name=h.user_name</value>
+left join tbl_User CashUsr on  CashUsr.user_name=h.user_name
+left join tbl_OrderTypes ty on ty.company_type_id=(select top 1 company_type_id from tbl_Company) and h.order_type=ty.id</value>
   </data>
   <data name="sqlDataSource1.ResultSchemaSerializable" xml:space="preserve">
     <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9IlF1ZXJ5Ij48RmllbGQgTmFtZT0iaGVhZGVySWQiIFR5cGU9IkludDY0IiAvPjxGaWVsZCBOYW1lPSJJbnZObyIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJub19vZl9ndWVzdHMiIFR5cGU9IkludDY0IiAvPjxGaWVsZCBOYW1lPSJ3YWl0ZXIiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iTG9jYXRpb24iIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iUGF5bWVudCIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJzY19yYXRlIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9InNjX2NoYXJnZSIgVHlwZT0iRGVjaW1hbCIgLz48RmllbGQgTmFtZT0iaW52b2ljZV9kYXRlIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9Imludm9pY2VfdGltZSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJUYWJsZU5hbWUiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iTG9nbyIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJmb290ZXIiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0ib3JkZXJfdHlwZSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJ1c2VyX25hbWUiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iaWQiIFR5cGU9IkludDY0IiAvPjxGaWVsZCBOYW1lPSJuYW1lIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9ImFkZHJlc3MiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iY2l0eSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJwaG9uZSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJlbWFpbCIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJSZWdpb25JZCIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9IklzRGVsZXRlZCIgVHlwZT0iQm9vbGVhbiIgLz48RmllbGQgTmFtZT0iaXRlbV9uYW1lIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9InF0eSIgVHlwZT0iRGVjaW1hbCIgLz48RmllbGQgTmFtZT0ic2VsbGluZ19wcmljZSIgVHlwZT0iRGVjaW1hbCIgLz48RmllbGQgTmFtZT0idG90YWwiIFR5cGU9IkRlY2ltYWwiIC8+PEZpZWxkIE5hbWU9ImRpc2NvdW50X2Ftb3VudCIgVHlwZT0iRGVjaW1hbCIgLz48RmllbGQgTmFtZT0iRGVsaXZlcnlGZWVzIiBUeXBlPSJEZWNpbWFsIiAvPjxGaWVsZCBOYW1lPSJSZWdpb25OYW1lIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9InRheDFfYW1vdW50IiBUeXBlPSJEZWNpbWFsIiAvPjxGaWVsZCBOYW1lPSJ0YXgyX2Ftb3VudCIgVHlwZT0iRGVjaW1hbCIgLz48RmllbGQgTmFtZT0iZHVlX2Ftb3VudCIgVHlwZT0iRGVjaW1hbCIgLz48RmllbGQgTmFtZT0icGFpZF9hbW91bnQiIFR5cGU9IkRlY2ltYWwiIC8+PC9WaWV3PjwvRGF0YVNldD4=</value>
