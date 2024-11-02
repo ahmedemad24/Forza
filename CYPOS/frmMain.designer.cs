@@ -170,6 +170,9 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tssTotalItems = new System.Windows.Forms.ToolStripStatusLabel();
             this.tssProduct = new System.Windows.Forms.ToolStripStatusLabel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.dscountTxtBx = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.pnlStockList.SuspendLayout();
             this.pnlSearch.SuspendLayout();
             this.pnlSearchInner.SuspendLayout();
@@ -452,7 +455,7 @@
             this.pnlItemList.Location = new System.Drawing.Point(0, 172);
             this.pnlItemList.Name = "pnlItemList";
             this.pnlItemList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.pnlItemList.Size = new System.Drawing.Size(420, 478);
+            this.pnlItemList.Size = new System.Drawing.Size(420, 423);
             this.pnlItemList.TabIndex = 145;
             // 
             // dgvItemList
@@ -515,7 +518,7 @@
             this.dgvItemList.RowTemplate.Height = 30;
             this.dgvItemList.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dgvItemList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvItemList.Size = new System.Drawing.Size(420, 419);
+            this.dgvItemList.Size = new System.Drawing.Size(420, 364);
             this.dgvItemList.TabIndex = 94;
             this.dgvItemList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItemList_CellContentClick);
             this.dgvItemList.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItemList_CellEndEdit);
@@ -702,7 +705,7 @@
             this.pnlGridAction.Controls.Add(this.btnChangePrice);
             this.pnlGridAction.Controls.Add(this.btnDeleteRow);
             this.pnlGridAction.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlGridAction.Location = new System.Drawing.Point(0, 419);
+            this.pnlGridAction.Location = new System.Drawing.Point(0, 364);
             this.pnlGridAction.Name = "pnlGridAction";
             this.pnlGridAction.Padding = new System.Windows.Forms.Padding(1);
             this.pnlGridAction.Size = new System.Drawing.Size(420, 54);
@@ -769,6 +772,9 @@
             // 
             this.pnlTotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
             this.pnlTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlTotal.Controls.Add(this.label9);
+            this.pnlTotal.Controls.Add(this.dscountTxtBx);
+            this.pnlTotal.Controls.Add(this.label8);
             this.pnlTotal.Controls.Add(this.lblTotalPayable);
             this.pnlTotal.Controls.Add(this.DeliveryFees);
             this.pnlTotal.Controls.Add(this.label6);
@@ -792,9 +798,9 @@
             this.pnlTotal.Controls.Add(this.lblTotalTax1);
             this.pnlTotal.Controls.Add(this.lblTotalDiscount);
             this.pnlTotal.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlTotal.Location = new System.Drawing.Point(0, 650);
+            this.pnlTotal.Location = new System.Drawing.Point(0, 595);
             this.pnlTotal.Name = "pnlTotal";
-            this.pnlTotal.Size = new System.Drawing.Size(420, 141);
+            this.pnlTotal.Size = new System.Drawing.Size(420, 196);
             this.pnlTotal.TabIndex = 149;
             // 
             // lblTotalPayable
@@ -815,7 +821,7 @@
             // 
             this.DeliveryFees.AutoSize = true;
             this.DeliveryFees.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DeliveryFees.Location = new System.Drawing.Point(147, 120);
+            this.DeliveryFees.Location = new System.Drawing.Point(147, 141);
             this.DeliveryFees.Name = "DeliveryFees";
             this.DeliveryFees.Size = new System.Drawing.Size(32, 16);
             this.DeliveryFees.TabIndex = 203;
@@ -827,7 +833,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(11, 120);
+            this.label6.Location = new System.Drawing.Point(11, 141);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(88, 16);
             this.label6.TabIndex = 202;
@@ -880,7 +886,7 @@
             // 
             this.lblTax2Rate.AutoSize = true;
             this.lblTax2Rate.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTax2Rate.Location = new System.Drawing.Point(95, 100);
+            this.lblTax2Rate.Location = new System.Drawing.Point(95, 121);
             this.lblTax2Rate.Name = "lblTax2Rate";
             this.lblTax2Rate.Size = new System.Drawing.Size(26, 16);
             this.lblTax2Rate.TabIndex = 167;
@@ -890,7 +896,7 @@
             // 
             this.lblTax1Rate.AutoSize = true;
             this.lblTax1Rate.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTax1Rate.Location = new System.Drawing.Point(95, 77);
+            this.lblTax1Rate.Location = new System.Drawing.Point(95, 98);
             this.lblTax1Rate.Name = "lblTax1Rate";
             this.lblTax1Rate.Size = new System.Drawing.Size(33, 16);
             this.lblTax1Rate.TabIndex = 166;
@@ -900,7 +906,7 @@
             // 
             this.lblTax2Name.AutoSize = true;
             this.lblTax2Name.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTax2Name.Location = new System.Drawing.Point(11, 99);
+            this.lblTax2Name.Location = new System.Drawing.Point(11, 120);
             this.lblTax2Name.Name = "lblTax2Name";
             this.lblTax2Name.Size = new System.Drawing.Size(81, 16);
             this.lblTax2Name.TabIndex = 165;
@@ -910,7 +916,7 @@
             // 
             this.lblTotalTax2.AutoSize = true;
             this.lblTotalTax2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalTax2.Location = new System.Drawing.Point(147, 99);
+            this.lblTotalTax2.Location = new System.Drawing.Point(147, 120);
             this.lblTotalTax2.Name = "lblTotalTax2";
             this.lblTotalTax2.Size = new System.Drawing.Size(32, 16);
             this.lblTotalTax2.TabIndex = 163;
@@ -955,7 +961,7 @@
             // 
             this.lblSubtotal.AutoSize = true;
             this.lblSubtotal.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSubtotal.Location = new System.Drawing.Point(147, 55);
+            this.lblSubtotal.Location = new System.Drawing.Point(147, 76);
             this.lblSubtotal.Name = "lblSubtotal";
             this.lblSubtotal.Size = new System.Drawing.Size(32, 16);
             this.lblSubtotal.TabIndex = 141;
@@ -965,7 +971,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(11, 55);
+            this.label10.Location = new System.Drawing.Point(11, 76);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(67, 16);
             this.label10.TabIndex = 140;
@@ -995,7 +1001,7 @@
             // 
             this.lblTax1Name.AutoSize = true;
             this.lblTax1Name.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTax1Name.Location = new System.Drawing.Point(11, 77);
+            this.lblTax1Name.Location = new System.Drawing.Point(11, 98);
             this.lblTax1Name.Name = "lblTax1Name";
             this.lblTax1Name.Size = new System.Drawing.Size(81, 16);
             this.lblTax1Name.TabIndex = 131;
@@ -1015,7 +1021,7 @@
             // 
             this.lblTotalTax1.AutoSize = true;
             this.lblTotalTax1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalTax1.Location = new System.Drawing.Point(147, 77);
+            this.lblTotalTax1.Location = new System.Drawing.Point(147, 98);
             this.lblTotalTax1.Name = "lblTotalTax1";
             this.lblTotalTax1.Size = new System.Drawing.Size(32, 16);
             this.lblTotalTax1.TabIndex = 49;
@@ -1854,6 +1860,41 @@
             this.tssProduct.Text = "LinkPOS Version 2.0";
             this.tssProduct.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(11, 54);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(108, 16);
+            this.label8.TabIndex = 205;
+            this.label8.Text = "Discount Amount:";
+            // 
+            // dscountTxtBx
+            // 
+            this.dscountTxtBx.BackColor = System.Drawing.SystemColors.Info;
+            this.dscountTxtBx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.dscountTxtBx.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dscountTxtBx.Location = new System.Drawing.Point(129, 50);
+            this.dscountTxtBx.Name = "dscountTxtBx";
+            this.dscountTxtBx.Size = new System.Drawing.Size(79, 23);
+            this.dscountTxtBx.TabIndex = 206;
+            this.dscountTxtBx.Text = "0";
+            this.dscountTxtBx.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.dscountTxtBx.TextChanged += new System.EventHandler(this.dscountTxtBx_TextChanged);
+            this.dscountTxtBx.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dscountTxtBx_KeyPress);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Olive;
+            this.label9.Location = new System.Drawing.Point(11, 171);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(269, 16);
+            this.label9.TabIndex = 207;
+            this.label9.Text = "using discount amount will close discount rate";
+            // 
             // frmMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -2052,5 +2093,8 @@
         private System.Windows.Forms.Button transferBtn;
         private System.Windows.Forms.Button mergeTblBtn;
         private System.Windows.Forms.TextBox searchItemTxtbx;
+        private System.Windows.Forms.TextBox dscountTxtBx;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
     }
 }

@@ -2998,7 +2998,7 @@ namespace cypos
             btnModifier.Enabled = false;
             btnQtyPlus.Enabled = false;
             btnQtyMinus.Enabled = false;
-
+            dscountTxtBx.Text = "0";
             btnRowUp.Enabled = false;
             btnRowDown.Enabled = false;
 
@@ -3579,6 +3579,80 @@ namespace cypos
             dtAllItems = GetItemList(searchItemTxtbx.Text, currentPageIndex, "sort_number, item_name");
             lblCategory.Text = "All Categories";
             btnPrevious.Enabled = false;
+        }
+
+        private void dscountTxtBx_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                
+                if (dgvItemList.Rows.Count > 0)
+                {
+                    double dblDiscount = dscountTxtBx.Text == "" ? 0 : Convert.ToDouble(dscountTxtBx.Text);
+                    
+                    double dblBeforeSubTotal = Convert.ToDouble(lblTotal.Text) - Convert.ToDouble(lblTotalDiscount.Text);
+
+                    double dblDisPlusOverallDiscount = dblDiscount + Convert.ToDouble(lblTotalDiscount.Text);
+                    dblDisPlusOverallDiscount = Math.Round(dblDisPlusOverallDiscount, 2);
+                    lblOverallDiscount.Text = dblDisPlusOverallDiscount.ToString();
+
+                    double dblAfterSubTotal = dblBeforeSubTotal - dblDiscount;
+                    dblAfterSubTotal = Math.Round(dblAfterSubTotal, 2);
+                    lblSubtotal.Text = dblAfterSubTotal.ToString();
+
+                    //Service Charge
+                    double dblScRate = Settings.ServiceChargeRate;
+                    double dblServiceCharge = 0;
+                    if (Settings.EnableServiceCharge)
+                    {
+                        dblServiceCharge = (dblAfterSubTotal / 100) * dblScRate;
+                    }
+                    lblScAmount.Text = dblServiceCharge.ToString("N2");
+                    double dblPayable = dblAfterSubTotal + Convert.ToDouble(lblTotalTax1.Text) + Convert.ToDouble(lblTotalTax2.Text) + dblServiceCharge;
+                    lblTotalPayable.Text = dblPayable.ToString("N2");
+
+                    if (dblDiscount == 0)
+                    {
+                        txtDiscountRate.Enabled = true;
+                        txtDiscountRate.Text = Settings.DefaultDiscount.ToString();
+                    }
+                    else
+                    {
+                        txtDiscountRate.Enabled = false;
+                        txtDiscountRate.Text = "0";
+                    }
+                }
+            }
+            catch
+            {
+                txtDiscountRate.Text = "0";
+            }
+        }
+
+        private void dscountTxtBx_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                bool ignoreKeyPress = false;
+
+                bool matchString = Regex.IsMatch(dscountTxtBx.Text.ToString(), @"\.\d\d\d");
+
+                if (e.KeyChar == '\b') // Always allow a Backspace
+                    ignoreKeyPress = false;
+                else if (matchString)
+                    ignoreKeyPress = true;
+                else if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+                    ignoreKeyPress = true;
+                else if (e.KeyChar == '.' && (sender as TextBox).Text.IndexOf('.') > -1)
+                    ignoreKeyPress = true;
+
+                e.Handled = ignoreKeyPress;
+                //using System.Text.RegularExpressions;
+            }
+            catch (Exception ex)
+            {
+                objerror.Write(ex.Message.ToString(), this.Name + " - txtDiscountRate_KeyPress", Global.ERROR_WRITE_PATH);
+            }
         }
 
         private void btnKbDiscount_Click(object sender, EventArgs e)
